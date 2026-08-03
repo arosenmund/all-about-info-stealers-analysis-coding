@@ -1,0 +1,88 @@
+Thank you for your submission to DEF CON 34 Workshops. Your submission ID number is 4093. Please write this number down and include it in any communications with us. Below is the information provided for your records.
+
+
+Submission ID: 4093
+
+Basecamp: I agree to my name and email being used to invite me to DEF CON's Basecamp Project Management System if my submission is accepted.
+
+Scheduling: Ryan is unable to present on Sun, 2026/08/09, as this will be a travel day. Would need to present earlier in the week.
+
+Equipment: n/a
+
+Agreements: I have read and agree to the Grant of Copyright Use, Terms of Speaking Requirements, Terms of Speaking Remuneration, Community and Code of Conduct, and Press Agreements.
+
+Presenter 1:
+First Name: Ryan
+Last Name: Chapman
+Organization: SANS Institute
+Country: United States
+Email: macdiablo@gmail.com
+Handle: rj_chap
+Display As: Both
+Pronouns: he/him
+Phone Number: 1-831-809-0769
+Website: https://incidentresponse.training/
+X/Twitter: https://x.com/rj_chap
+LinkedIn: https://www.linkedin.com/in/ryanjchapman/
+Youtube: https://www.youtube.com/ryanchapmanj
+Biography: Ryan Chapman is the author of SANS’ “FOR528: Ransomware and Cyber Extortion” course, teaches SANS’ “FOR610: Reverse Engineering Malware” course, and works as a threat hunter @ $dayJob. Ryan has a passion for life-long learning, loves to teach people about ransomware-related attacks, and enjoys pulling apart malware. He has presented workshops at DefCon and other conferences in the past and knows how to create a step-by-step instruction set to maximize hands-on learning.
+ADA: n/a
+Visa: n/a
+
+
+Presenter 2:
+First Name: Aaron
+Last Name: Rosenmund
+Organization: OnDefend
+Country: United States
+Email: Aaron.rosenmund@ondefend.com
+Handle: ironcat
+Display As: Both
+Pronouns: he/him
+Phone Number: 1-904-859-8877
+X/Twitter: https://x.com/arosenmund
+LinkedIn: https://www.linkedin.com/in/aaronrosenmund/
+Biography: Aaron Rosenmund is an accomplished cybersecurity professional with extensive experience in various leadership roles across multiple organizations. Currently serving as the Managing Director of Tradecraft and Programs at OnDefend since September 2024, Aaron also holds a position at the National Guard Bureau as Staff Lead for the Cyber Shield Red Team, demonstrating a commitment to enhancing cybersecurity defenses. With a background that includes significant roles at Pluralsight, where responsibilities spanned content strategy and security skills development, and the Florida Air National Guard as a Lead Cyber Operator focused on defensive operations, Aaron has developed a comprehensive skill set in threat emulation, cyber system operations, and training. Additionally, past leadership positions as CEO at Aestus Industries and Vice President at Concrete Surface Innovations underscore strong management capabilities and operational expertise. Aaron holds multiple degrees in technology and cybersecurity from respected institutions, underscoring a solid educational foundation in this field.
+ADA: n/a
+Visa: n/a
+
+
+Topic(s): Workshop
+
+Title: All About Stoopie InfoStealers: Malware Analysis for Understanding, Custom Coding for True Understanding!
+
+Keywords: malware, malware analysis, reverse engineering, rem, custom code, infostealer, info stealer
+
+Type: 4 Hour Workshop
+
+Abstract: Learn to understand InfoStealers through hands-on malware analysis. Then REALLY learn about stealers through writing custom, evolved code. Current infostealers are largely rule-based and path-driven. They target known locations (browser stores, wallets, .env, configs) and perform broad collection followed by straightforward HTTPS or webhook-based exfiltration. This approach is effective but noisy, predictable, and increasingly well-detected due to its volume and recognizable patterns. The evolution is toward precision and behavioral stealth. On-host, this means replacing static file targeting with a lightweight, in-memory relevance model backed by a compact training corpus of high-value artifact patterns (credentials, tokens, configs, internal docs). Files are scored using metadata, tokenized content, and embeddings, enabling selective, high-confidence extraction. On the network side, exfiltration shifts from “what is sent” to “how it is sent”—embedding data into timing, flow behavior, and protocol-native patterns rather than obvious payloads.
+
+Max Attendees: 1000
+
+Categories: Malware Analysis and Reverse Engineering
+
+Engagement: As we’ve done for the past few years in our DefCon workshops, we will be using a live online environment to provide real-time, on-demand generation of lab environments for each student. Once students log in to the system, they will select to engage in the assigned lab. At that point their range will be built – all students will have their own dedicated malware analysis environment. From the very start of this workshop, students will be interactively compiling and executing a variety of tools and scripts. The entire workshop is based on kinesthetic learning, with our ultimate goal being to teach every student not just how to run commands, but rather how to build out their arsenal from the bottom to the top!
+
+Diversify: This workshop combines cybercrime tradecraft, malware analysis + building, AI enhancement, and custom red team tool operations through focusing on the current and future states of infostealer malware. We will be teaching people how these stealers work through malware analysis using Ghidra and then have students code, compile, test, enhance, and re-build their own tools.
+
+Experience: Intermediate
+
+Prerequisites: (We’re stealing a bit from previous years’ submissions in this regard, but that’s because it’s basically the same:)
+
+The primary requirement for this course is a desire to learn and the determination to tackle challenging problems. In addition, having some familiarization with the following topics will help students maximize their time in this course:
+
+- A general background in computing and networking
+- Familiarity with blue and/or red team-oriented tools
+- An understanding of general networking concepts
+- Familiarity with software compilation and/or debugging – though we’ll cover everything students need to know
+
+VMs: No
+
+VMs if Yes: n/a
+
+Requirements: - A laptop with Linux/Windows/Mac desktop environment
+- Networking capability: Students will be connecting to a remote network range – They will need a wireless NIC (assuming the workshop area provides Wi-Fi – if not we’ll need to know) that can be enabled along with administrator privileges on their system
+- IMPORTANT: This workshop relies on network connectivity. Any student not able to connect to our range will be unable to follow along with the hands-on portion of the workshop.
+
+
+Prior Delivery: Nope! This will be a brand new Ryan & Aaron workshop :).

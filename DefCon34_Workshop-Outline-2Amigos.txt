@@ -1,0 +1,58 @@
+I. Introduction (10 min) - Ryan & Aaron
+
+A. Welcome and Introductions
+B. Overview of the workshop
+b1. Explain the focus: Learning all about InfoStealers through hands-on malware analysis followed by custom code writing, testing, and enhancement
+b2. Discuss the tools & techniques covered
+b3. Explain the flow: Ryan starts with an overview of current day infostealers through introducing LummaC2 code analysis using Ghidra. Once workshop attendees have learned how a top infostealer such as Lumma does its job through hands-on analysis, Aaron takes over to show students how to write their own infostealer > compile it > run it > code to make it even better.
+C. Set ground rules and expectations (active participation, respectful environment, encouraging questions, and discussion!)
+
+II. Lab Environment Setup (20 min) - Aaron
+
+A. GitHub Lab Instructions
+B. Setup accounts and get VMs running - OnDefend Lab Enviornment
+- Note: This is Aaron's lab, built from the ground up. Totally free accounts. No personal info required.
+C. Troubleshooting
+
+III. Introduction to InfoStealers (45 min) - Ryan
+
+A. What is an InfoStealer? How have they evolved over the years?
+B. What is LummaC2? Why did we pick it for this workshop?
+C. How does LummaC2 steal data? Which data can it steal? How does it steal data?
+C. Initial malware analysis stages in Ghidra
+c1. Removing obfuscation techniques from LummaC2
+c2. Analyzing initial enumeration and .txt file exfiltration
+c3. Analyzing crypto wallet stealing methods
+
+BREAK!!! (15 min)
+
+IV. Advanced InfoStealer Analysis (45 min) – Ryan
+
+A. Continued malware analysis in Ghidra
+a1. Analyzing browser stealing via app data
+a2. Analyzing browser 2FA extension data stealing
+a3. Analyzing browser database stealing
+
+V. Writing an InfoStealer: Part 1 (45 min) – Aaron
+Goal: Show how to write a basic infostealer, modeled after LummaC2
+
+A. Writing a custom infostealer
+a1. Review pre-provided code snippets
+a2. Augment code live in class
+a3. Compile custom code
+B. Run the infostealer
+b1. Review data exfiltration
+b2. Comparison: Compare the functionality of the Malware-as-a-Service Lumma to the student's custom code
+
+C. BREAK!!! (15 min)
+
+VI. Writing an AI-Enhanced InfoStealer (45 min) – Aaron
+Goal: Showing how to transition to a 2026-era malware specimen that uses AI to select data for exfiltration rather than relying soley on static, pre-selected pathing and/or artifacts 
+
+A. Updating the custom infostealer using AI components
+a1. Implementing a CNN model in memory
+a2. Transitioning from static pathing to behavioral exfiltration
+a3. Compile custom code
+B. Run the enhanced infostealer
+b1. Review data exfiltration
+b2. Takeways and comparisons

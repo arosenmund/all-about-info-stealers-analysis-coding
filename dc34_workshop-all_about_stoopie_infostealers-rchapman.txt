@@ -1,0 +1,102 @@
+# DefCon 34 Workshop: All About Stoopie InfoStealers
+
+Full title:
+All About Stoopie InfoStealers: Malware Analysis for Understanding, Custom Coding for True Understanding!!
+
+Trainers:
+Ryan Chapman (@rj_chap)
+Aaron Rosenmund (@ironcat)
+
+Time:
+Friday, August 7th at 1400-1800 Vegas time
+
+# Message to Students
+
+## Welcome!
+
+Hello there! Ryan and Aaron here. We are extremely excited to run this fun, hands-on workshop on infostealers at DefCon 34! This will be our 5th year running a DefCon workshop together -- We have this down to a science, and we're ready for you to come hang with us and learn while having a blast.
+
+This workshop is going to be 1/2 malware analysis/reverse engineering and then 1/2 writing code. It's simple: Ryan will be doing the first half of the workshop showing you how to pull apart a big name infostealer in Ghidra/x64dbg. Once you've learned how infostealers work, Aaron will take over for the second half of the workshop and show you how to write your OWN infostealer! You'll be writing the code, compiling, and running. All within our safe, "malware is fine here, have fun" lab environment. 
+
+Speaking of which:
+This workshop will be hands-on and will be conducted in an online lab environment. As such, you will need to bring a laptop with a Wi-Fi network adapter that you can connect to the DefCon Workshops wireless network. System requirements are not really a thing, as the online system wil be doing the heavy lifting. You just need a browser, unfettered network access, and a desire to PLAY WITH SOME MALWARRE!
+
+## Content
+
+Aaron is hosting this year's GitHub repo. EVERYTHING you need for the workshop will be accessible in the GH repo. Please note that leading up to the workshop, the repo WILL BE PRIVATE and thus NOT ACCESSIBLE. 
+
+We will make the repo PUBLIC perhaps a week or so before the conference :). 
+
+GitHub repo for workshop:
+https://github.com/arosenmund/all-about-info-stealers-analysis-coding
+
+## Abstract
+
+Gain a deeper understanding of how ransomware evades analysis and learn how to identify and counter these techniques. This workshop will explore common evasion methods, how they work, and how you can develop the skills to write code that re-enacts these methods. This workshop will begin by showing you how ransomware builders work. How do the builders generate reliable, viable ransomware code? You’ll learn! Once built, how do these malicious binaries implement analysis evasion techniques? Which techniques are used often? How do they function? We'll dive into the most prevalent techniques to show you how they work and why. Finally, you will learn how to re-enact some of these techniques along with more advanced methods within your own code. Are you ready to take your reverse engineering and coding skills to the next levels? – Let’s do this! And remember: #RansomwareSucks!
+
+## Outline
+
+The following is a rough outline of the workshop. Please note that Aaron and I will adjust tempo as needed. We'll be floating through the content at whatever pace best fits the class :).
+
+I. Introduction (10 min) - Ryan & Aaron
+
+A. Welcome and Introductions
+B. Overview of the workshop
+b1. Explain the focus: Learning all about InfoStealers through hands-on malware analysis followed by custom code writing, testing, and enhancement
+b2. Discuss the tools & techniques covered
+b3. Explain the flow: Ryan starts with an overview of current day infostealers through introducing LummaC2 code analysis using Ghidra. Once workshop attendees have learned how a top infostealer such as Lumma does its job through hands-on analysis, Aaron takes over to show students how to write their own infostealer > compile it > run it > code to make it even better.
+C. Set ground rules and expectations (active participation, respectful environment, encouraging questions, and discussion!)
+
+II. Lab Environment Setup (20 min) - Aaron
+
+A. GitHub Lab Instructions
+B. Setup accounts and get VMs running - OnDefend Lab Enviornment
+- Note: This is Aaron's lab, built from the ground up. Totally free accounts. No personal info required.
+C. Troubleshooting
+
+III. Introduction to InfoStealers (45 min) - Ryan
+
+A. What is an InfoStealer? How have they evolved over the years?
+B. What is LummaC2? Why did we pick it for this workshop?
+C. How does LummaC2 steal data? Which data can it steal? How does it steal data?
+C. Initial malware analysis stages in Ghidra
+c1. Removing obfuscation techniques from LummaC2
+c2. Analyzing initial enumeration and .txt file exfiltration
+c3. Analyzing crypto wallet stealing methods
+
+BREAK!!! (15 min)
+
+IV. Advanced InfoStealer Analysis (45 min) – Ryan
+
+A. Continued malware analysis in Ghidra
+a1. Analyzing browser stealing via app data
+a2. Analyzing browser 2FA extension data stealing
+a3. Analyzing browser database stealing
+
+V. Writing an InfoStealer: Part 1 (45 min) – Aaron
+Goal: Show how to write a basic infostealer, modeled after LummaC2
+
+A. Writing a custom infostealer
+a1. Review pre-provided code snippets
+a2. Augment code live in class
+a3. Compile custom code
+B. Run the infostealer
+b1. Review data exfiltration
+b2. Comparison: Compare the functionality of the Malware-as-a-Service Lumma to the student's custom code
+
+C. BREAK!!! (15 min)
+
+VI. Writing an AI-Enhanced InfoStealer (45 min) – Aaron
+Goal: Showing how to transition to a 2026-era malware specimen that uses AI to select data for exfiltration rather than relying soley on static, pre-selected pathing and/or artifacts 
+
+A. Updating the custom infostealer using AI components
+a1. Implementing a CNN model in memory
+a2. Transitioning from static pathing to behavioral exfiltration
+a3. Compile custom code
+B. Run the enhanced infostealer
+b1. Review data exfiltration
+b2. Takeways and comparisons
+
+---
+
+Thank you all, and get ready to HAVE SOME FUN!!
