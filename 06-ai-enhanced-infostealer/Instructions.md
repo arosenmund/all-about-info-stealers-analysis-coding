@@ -27,4 +27,22 @@ cd all-about-info-stealers-analysis-coding\06-ai-enhanced-infostealer\test-windo
 
 > You will see the successfull checks and deployment locations!
 
-6. 
+6. Now change to the windows classifier binary folder.
+
+```
+cd 06-ai-enhanced-infostealer\classifier-cli-scanner-poc-001-windows-x86_64
+
+```
+
+7s. Now, run the rust based classifier!!!
+```
+.\classifier-cli.exe scan --root 'C:\Users\' --model '.\artifacts\cnn\cnn-fp32-033.onnx' --manifest '.\artifacts\cnn\cnn-fp32-003.manifest.json' --show-paths'
+
+```
+
+> If it fails to run, check the paths and make sure you can "tab complete".
+
+Now it will find tons of files that are candidates to match strings at the byte level that look like authentication.
+
+Now open VSCode to follow along opening the Git Repo folder.
+
