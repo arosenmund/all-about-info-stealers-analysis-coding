@@ -1,0 +1,34 @@
+{
+  "nextId": 3,
+  "logins": [
+    {
+      "id": 1,
+      "hostname": "https://portal.example.com",
+      "httpRealm": null,
+      "formSubmitURL": "https://portal.example.com",
+      "usernameField": "email",
+      "passwordField": "password",
+      "encryptedUsername": "MDIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECHfake01UsernameBlobExample==",
+      "encryptedPassword": "MEIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECPfakePasswordBlobExample0123456789abcdefABCDEF==",
+      "guid": "{a1b2c3d4-5e6f-7081-92a3-b4c5d6e7f809}",
+      "encType": 1,
+      "timeCreated": 1749800000000,
+      "timeLastUsed": 1749900000000,
+      "timePasswordChanged": 1749800000000,
+      "timesUsed": 12
+    },
+    {
+      "id": 2,
+      "hostname": "https://git.example.com",
+      "formSubmitURL": "https://git.example.com",
+      "encryptedUsername": "MDIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECHfake02UsernameBlob==",
+      "encryptedPassword": "MEIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECPfake02PasswordBlobExample==",
+      "guid": "{9c8b7a6f-5e4d-3c2b-1a09-182736450918}",
+      "encType": 1,
+      "timesUsed": 4
+    }
+  ],
+  "potentiallyVulnerablePasswords": [],
+  "dismissedBreachAlertsByLoginGUID": {},
+  "version": 3
+}
