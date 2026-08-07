@@ -165,7 +165,14 @@ func ScanFile(fname string) []Info {
 	}
 
 	fExt := filepath.Ext(fname)
+	var redFlagFound bool
 
+	for _, rf := range RED_FLAGS {
+		if strings.Contains(strings.ToLower(fname), rf) {
+			redFlagFound = true
+			break
+		}
+	}
 	var fReader io.Reader
 
 	if fExt == ".env" || fExt == ".pem" || fExt == ".key" {
@@ -184,6 +191,19 @@ func ScanFile(fname string) []Info {
 		}[fExt]
 		found["fullcontent"] = Info{CredType: credType, Content: string(content), FileContaining: []string{fname}, Count: 1}
 		fReader = strings.NewReader(string(content))
+	} else if redFlagFound {
+		content, err := os.ReadFile(fname)
+		if err != nil {
+			log.Println("[!] unable to read file:", err.Error())
+			return nil
+		}
+		if len(content) > maxFileSizeBytes {
+			content = content[:maxFileSizeBytes]
+		}
+		credType := "other"
+		found["fullcontent"] = Info{CredType: credType, Content: string(content), FileContaining: []string{fname}, Count: 1}
+		fReader = strings.NewReader(string(content))
+
 	} else if fExt == ".pdf" {
 		f, fPdfReader, err := pdf.Open(fname)
 		if err != nil {
