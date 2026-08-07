@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Config
+current-context: prod-cluster
+clusters:
+- name: prod-cluster
+  cluster:
+    server: https://198.51.100.10:6443
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJmYWtlQ0FDZXJ0RXhhbXBsZURhdGFBQkNERUYwMTIzNDU2Nzg5PT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+contexts:
+- name: prod-cluster
+  context:
+    cluster: prod-cluster
+    user: jdoe
+    namespace: default
+users:
+- name: jdoe
+  user:
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6IkV4YW1wbGVLZXlJZCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwic3ViIjoiamRvZSJ9.FAKE_signature_ABCDEF0123456789ghijklmnopqrstuvwxyz
+    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJmYWtlQ2xpZW50Q2VydEV4YW1wbGVBQkNERUYwMTIzNDU2Nzg5PT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    client-key-data: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb2dJQkFBS0NBUUVBZmFrZUNsaWVudEtleUV4YW1wbGVBQkNERUYwMTIzNDU2Nzg5PT0KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0K
