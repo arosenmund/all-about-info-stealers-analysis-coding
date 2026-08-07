@@ -20,36 +20,32 @@
 4. Double-click any entry to jump to its address in the **Listing** view.
 5. Right-click a string → **References → Show References to Address** to see what code actually touches it. This is the pivot that separates "string sitting in `.rdata`" from "string a function reads" — keep this habit for the rest of the workshop.
 
-> **Note:** Defined Strings only shows what Ghidra's auto-analysis already typed as string data. It won't show every human-readable byte sequence in the binary — just what's been recognized so far.
+> **Note:** Defined Strings only shows what Ghidra's auto-analysis already typed as string data. It won't show every human-readable byte sequence in the binary — just what's been recognized so far. Goodie goodie, ty Ghidra!
 
-### 2. Search all memory for "steal"
+### 2. Search the Defined Strings for "steal"
 
-The Defined Strings table is a *curated* view. To search raw memory regardless of whether Ghidra typed it yet:
+The Defined Strings table is a *curated* view. Good. Let's search it:
 
-6. Go to **Search → For Strings...**.
-7. Set **Minimum length** to `3`.
-8. Make sure both ASCII and Unicode search are enabled (check **Null terminated** / **Require null termination**) so UTF-16LE text is picked up too, not just ASCII.
-9. Click **Search**, then in the results window's filter box, type:
-   ```
-   steal
-   ```
-10. You should get exactly **one match**, at address `140084920`, a UTF-16LE string:
-    ```
-    C:\builder_v2\stealc\json.h
-    ```
-11. Double-click it to jump to the Listing. Right-click the address → **Data → Unicode** to formally type it as string data (this also adds it to Defined Strings for later reference).
+6. At the bottom of the Defined Strings window, type in `steal`. You will see 3 results.
+7. In the `Location` column, click the first address, `140084920`, which is the location of the found string `C:\builder_v2\stealc\json.h`.
+
+    ![ghidra steal string](./purty_picturez/ghidra-steal_string.png)
+
+8. Go back to the Code Browser windoww, and you should see that you are now at address `140084920`. You will see the string identified.
+
+    ![ghidra steal string](./purty_picturez/ghidra-steal_string_location.png)
 
 ### 3. Read this finding carefully — don't over-claim it
 
-12. Look at the strings sitting near it in memory (scroll a little in the Listing, or check Defined Strings around that address) — you'll find things like `[json.exception.` and `map/set too long`. Those are error strings from an embedded JSON parsing library (e.g., nlohmann/json), and `builder_v2\stealc\json.h` is that library's *source file path* as it existed on the developer's build machine when they compiled it in.
-13. What this string is:
+9. Look at the strings sitting near it in memory (scroll a little in the Listing, or check Defined Strings around that address) — you'll find things like `[json.exception.` and `map/set too long`. Those are error strings from an embedded JSON parsing library (e.g., nlohmann/json), and `builder_v2\stealc\json.h` is that library's *source file path* as it existed on the developer's build machine when they compiled it in.
+10. What this string is:
     - A **leftover compiler/debug build path** — it tells you about the developer's build environment, not runtime behavior.
     - The `stealc` path segment resembles the known **Stealc** infostealer family name — a real, notable lead.
-14. What this string is **not**:
+11. What this string is **not**:
     - It is not proof the binary performs any particular behavior.
     - The word "steal" appearing here is incidental to the JSON library's folder structure, not a functional stealer string on its own.
     - Family attribution should not rest on this string alone — it needs corroboration from imports, decompiled behavior, or other independent evidence before you'd call it a finding rather than a lead.
 
-15. Keep this address (`140084920`) and the WinSCP strings (`140087418`) in your notes — both will come up again once we start tracing code in the next section.
+12. Keep this address (`140084920`) and the WinSCP strings (`140087418`) in your notes — both will come up again once we start tracing code in the next section.
 
 **[Next: Strings Decoding →](./04-strings-decoding.md)**
