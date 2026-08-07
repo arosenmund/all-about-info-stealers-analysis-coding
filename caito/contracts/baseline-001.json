@@ -1,0 +1,42 @@
+{
+  "baseline_contract_version": "baseline-001",
+  "feature_schema_version": "char-ngram-hash-001",
+  "input_contract": "classifier-input-002",
+  "split_contract": "split-001",
+  "class_order": [
+    "sensitive_like",
+    "placeholder_or_test",
+    "benign_other"
+  ],
+  "features": {
+    "source": "candidate text in memory only",
+    "boundary_markers": ["^", "$"],
+    "ngram_sizes": [3, 4, 5],
+    "hash": "SHA-256 first eight bytes, big-endian modulo 512, signed by digest byte eight low bit",
+    "normalization": "L2 per record"
+  },
+  "training": {
+    "model": "multinomial logistic regression",
+    "partition": "train only",
+    "epochs": 80,
+    "learning_rate": 0.35,
+    "learning_rate_decay": 0.02,
+    "l2_regularization": 0.0001,
+    "class_weighting": "inverse train-class frequency",
+    "selection": "No held-out split is used for hyperparameter tuning in this POC."
+  },
+  "evaluation": {
+    "splits": ["validation", "calibration", "test"],
+    "metrics": ["accuracy", "macro_f1", "per-class precision/recall/f1", "one-vs-rest average precision", "recall at empirical FPR 0.10 and 0.01", "confusion matrix"],
+    "calibration_and_policy": "Not implemented; model scoring is not a policy decision."
+  },
+  "retention": "in-memory only; no model artifact, per-record predictions, or candidate text are written",
+  "exclusions": [
+    "candidate text in reports",
+    "context text in reports",
+    "filesystem paths",
+    "per-record predictions",
+    "policy decisions"
+  ],
+  "acceptance": "Use grouped held-out metrics as evidence only. Quality targets and any decision-policy threshold require owner approval before a scanner classification path is added."
+}

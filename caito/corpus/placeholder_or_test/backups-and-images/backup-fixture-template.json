@@ -1,0 +1,6 @@
+{
+  "snapshot_credential": "SAMPLE_BACKUP_CREDENTIAL_HOTEL",
+  "image_access_key": "TEST_IMAGE_ACCESS_KEY_INDIA",
+  "decryption_phrase": "REPLACE_DECRYPTION_PHRASE_JULIET",
+  "annotation": "not-connected-to-any-backup-system"
+}

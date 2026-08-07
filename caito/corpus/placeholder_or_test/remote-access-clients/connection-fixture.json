@@ -1,0 +1,6 @@
+{
+  "connection_password": "SAMPLE_CONNECTION_PASSWORD_JULIET",
+  "remote_access_token": "EXAMPLE_REMOTE_TOKEN_KILO",
+  "private_connection_key": "NOT_A_LIVE_CONNECTION_KEY_LIMA",
+  "annotation": "offline-remote-connection-fixture"
+}

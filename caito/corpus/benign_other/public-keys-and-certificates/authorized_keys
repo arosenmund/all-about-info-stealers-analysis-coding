@@ -1,0 +1,11 @@
+# ~/.ssh/authorized_keys and *.pub files. These are PUBLIC keys — the half you
+# hand out. They match "ssh-" and long-base64 patterns but unlock nothing without
+# the matching PRIVATE key (which lives in id_ed25519 / id_rsa — see
+# ../../developer-cloud-tooling/). Contrast: no "BEGIN OPENSSH PRIVATE KEY".
+
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGZha2VQVUJMSUNrZXlFeGFtcGxlU2FmZVRvU2hhcmUwMTIz asmith@workstation01
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCfakePUBLICrsaKeyExampleSafeToShareABCDEF0123456789ghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789fakefakefakepublickeydatacontinuesABCDEF0123456789ghijklmnopqrstuvwxyz mwong@laptop
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFakeEcdsaPublicPointExampleSafeToShare0123456789abcdef= ci@buildserver
+
+# known_hosts entries are also public key fingerprints, not secrets:
+github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl

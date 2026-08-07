@@ -1,0 +1,2 @@
+file: star_contoso_com.pfx
+password: P@ssw0rd-Pfx-Contoso-2026

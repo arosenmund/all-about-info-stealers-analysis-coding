@@ -1,0 +1,21 @@
+{
+  "//": "A JSON Web Key Set, served publicly at /.well-known/jwks.json. The 'n' (modulus) and 'x'/'y' fields are long base64url blobs that look secret but are PUBLIC key material used to VERIFY tokens. A private JWK would additionally contain 'd' (and p/q/dp/dq/qi) — none of those are here.",
+  "keys": [
+    {
+      "kty": "RSA",
+      "use": "sig",
+      "kid": "8192a3b4-c5d6-e7f8-0912-233445566778",
+      "alg": "RS256",
+      "n": "fakePUBLICmodulusBase64UrlExampleSafeToShare0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-fakefakemodulusdatacontinuesForRealisticRSAkeyLengthABCDEF0123456789ghijklmnopqrstuvwxyz",
+      "e": "AQAB"
+    },
+    {
+      "kty": "EC",
+      "use": "sig",
+      "kid": "6f708192-a3b4-c5d6-e7f8-091223344556",
+      "crv": "P-256",
+      "x": "fakeECpublicXcoordExampleSafeToShare0123456789abcdef",
+      "y": "fakeECpublicYcoordExampleSafeToShare0123456789abcdef"
+    }
+  ]
+}

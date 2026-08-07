@@ -1,0 +1,48 @@
+{
+  "contract_version": "baseline-selection-001",
+  "purpose": "Predeclare and select the next Python character-n-gram baseline configuration without using calibration or test evidence for selection.",
+  "baseline_engine_contract": "baseline-003",
+  "quality_gate_contract": "phase-01-quality-gate-002",
+  "split_contract": "split-002",
+  "candidate_configurations": [
+    {
+      "candidate_id": "hash-512-char3-5-e30",
+      "feature_dimension": 512,
+      "ngram_minimum": 3,
+      "ngram_maximum": 5,
+      "epochs": 30,
+      "learning_rate": 0.35,
+      "learning_rate_decay": 0.02,
+      "l2_regularization": 0.0001
+    },
+    {
+      "candidate_id": "hash-1024-char3-5-e30",
+      "feature_dimension": 1024,
+      "ngram_minimum": 3,
+      "ngram_maximum": 5,
+      "epochs": 30,
+      "learning_rate": 0.35,
+      "learning_rate_decay": 0.02,
+      "l2_regularization": 0.0001
+    },
+    {
+      "candidate_id": "hash-1024-char2-6-e30",
+      "feature_dimension": 1024,
+      "ngram_minimum": 2,
+      "ngram_maximum": 6,
+      "epochs": 30,
+      "learning_rate": 0.35,
+      "learning_rate_decay": 0.02,
+      "l2_regularization": 0.0001
+    }
+  ],
+  "selection": {
+    "training": "Fit each candidate on train only.",
+    "selection_split": "Evaluate every candidate on validation only.",
+    "eligibility": "Meet all phase-01-quality-gate-002 baseline selection targets.",
+    "ranking": "Eligible first, then highest validation macro F1, then highest sensitive-like F1, then highest sensitive-like recall at 10% empirical FPR, then listed candidate order.",
+    "confirmation": "Refit only the selected candidate from scratch and report validation, calibration, and test aggregates. Calibration and test evidence never changes selection."
+  },
+  "retention": "in-memory only; no model, candidate text, context text, paths, record IDs, per-record predictions, or split membership is written",
+  "scope": "Research model-selection evidence only. This contract does not authorize a scanner decision, policy change, model artifact, or Rust port."
+}

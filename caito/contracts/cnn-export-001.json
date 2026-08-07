@@ -1,0 +1,23 @@
+{
+  "contract_version": "cnn-export-001",
+  "input_contracts": ["cnn-001", "preprocess-001", "evaluation-allocation-001"],
+  "purpose": "Export the accepted fixed FP32 CNN to a local ONNX artifact only after PyTorch-to-ONNX parity passes.",
+  "artifact": {
+    "model_file": "artifacts/cnn/cnn-fp32-001.onnx",
+    "manifest_file": "artifacts/cnn/cnn-fp32-001.manifest.json",
+    "golden_file": "artifacts/cnn/cnn-fp32-001.golden.json",
+    "input_name": "byte_ids",
+    "input_shape": ["batch", 512],
+    "input_dtype": "int64",
+    "output_name": "logits",
+    "opset": 17
+  },
+  "parity": {
+    "fixtures": "committed lab-generated synthetic inputs only",
+    "pytorch_to_onnx_max_absolute_logit_drift": 0.00001,
+    "class_decisions": "identical"
+  },
+  "publication": "Write temporary files, run ONNX checker and ONNX Runtime parity, then publish all three versioned files only if none already exists. Existing artifacts are never overwritten.",
+  "release_holdout": "Excluded. The exporter trains only cnn-001 development data and compares only committed synthetic fixtures.",
+  "exclusions": ["INT8 quantization", "Rust ort", "network access", "raw candidate output", "scanner decisions"]
+}

@@ -1,0 +1,1 @@
+mongodb+srv://app_user:M0ngo-Atlas-2026@cluster0.ab1cd.mongodb.net/orders?retryWrites=true&w=majority

@@ -1,0 +1,23 @@
+{
+  "contract_version": "cnn-observation-001",
+  "purpose": "Attach locally loaded frozen FP32 CNN morphology observations to runtime-scan-001 candidates without emitting candidate, path, probability, confidence, or policy data.",
+  "input": {
+    "scanner_contract": "runtime-scan-001",
+    "candidate_preprocessing": "preprocess-001 candidate byte mapping only",
+    "model_artifact": "local cnn-export-003 ONNX model and manifest with checksum, class-order, graph, shape, and preprocessing validation"
+  },
+  "output": {
+    "schema_version": "runtime-scan-output-001",
+    "aggregate_fields": [
+      "runtime-scan-001 summary",
+      "candidate count",
+      "primary-class count for sensitive_like, placeholder_or_test, benign_other"
+    ]
+  },
+  "boundaries": [
+    "no raw candidate, source path, context, fingerprint, logits, probabilities, or confidence in output",
+    "no persistence, telemetry, remote access, remote model download, or runtime network",
+    "observation is not calibration, fusion, a policy decision, or a validity assertion",
+    "any local model or scanner error is returned as a sanitized CLI failure"
+  ]
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Real path on a DC:
+     \\example.com\SYSVOL\example.com\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\Machine\Preferences\Groups\Groups.xml
+     The cpassword attribute is AES-256 encrypted with a KEY MICROSOFT PUBLISHED
+     (MS14-025). Any reader can decrypt it -> effectively plaintext.
+     This sample cpassword decrypts to the well-known demo value "Local*P4ssword!". -->
+<Groups clsid="{3125E937-EB16-4b4c-9934-544FC6D24D26}">
+  <User clsid="{DF5F1855-51E5-4d24-8B1A-D9BDE98BA1D1}"
+        name="Administrator (built-in)"
+        image="2"
+        changed="2026-03-02 18:44:12"
+        uid="{9C8B7A6F-5E4D-3C2B-1A09-182736450918}">
+    <Properties action="U"
+                newName=""
+                fullName=""
+                description="Managed local admin"
+                cpassword="edBSHOwhZLTjt/QS9FeIcJ83mjWA98gw9guKOhJOdcqh+ZGMeXOsQbCpZ3xUjTLfCuNH8pG5aSVYdYw/NglVmQ"
+                changeLogon="0"
+                noChange="1"
+                neverExpires="1"
+                acctDisabled="0"
+                userName="Administrator (built-in)"/>
+  </User>
+</Groups>

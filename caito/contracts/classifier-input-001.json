@@ -1,0 +1,33 @@
+{
+  "classifier_input_contract_version": "classifier-input-001",
+  "input_contract": "extract-001",
+  "retention": "in-memory only",
+  "output": "validated candidate/context records for canonical preprocessing; not input-001",
+  "record_id": {
+    "rule": "classifier-input-001-<extract-001 record_id>",
+    "max_utf8_bytes": 128,
+    "decision_record_link": "origin_record_id is retained in memory for a later redacted decision record"
+  },
+  "candidate": {
+    "encoding": "utf-8",
+    "min_utf8_bytes": 1,
+    "max_utf8_bytes": 4096,
+    "over_limit": "reject that extracted candidate with an aggregate-only rejection code"
+  },
+  "context": {
+    "key_max_utf8_bytes": 128,
+    "line_max_utf8_bytes": 2048,
+    "nearby_line_max_utf8_bytes": 512,
+    "before_max_items": 4,
+    "after_max_items": 4,
+    "total_utf8_bytes": 8192
+  },
+  "canonical_preprocessing": {
+    "contract": "preprocess-001",
+    "behavior": "reuse the canonical byte buffer and candidate-redacted semantic-context envelope exactly",
+    "normalized_context_over_limit": "reject that extracted candidate with an aggregate-only rejection code"
+  },
+  "source_metadata": "No legacy input-001 source object is invented. Extraction kind and optional corpus annotations remain in memory; provenance conventions remain a later owner decision.",
+  "labels": "primary_label and artifact_family are retained only when supplied by corpus-001; unlabeled scans remain unlabeled.",
+  "reporting": "CLI output may emit aggregate counts and rejection-code totals only. It must not emit paths, candidates, context, origin IDs, or labels."
+}

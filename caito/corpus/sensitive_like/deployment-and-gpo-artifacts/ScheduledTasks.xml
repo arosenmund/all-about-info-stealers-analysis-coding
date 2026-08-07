@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- \\contoso.com\SYSVOL\contoso.com\Policies\{...}\Machine\Preferences\ScheduledTasks\ScheduledTasks.xml
+     Same MS14-025 cpassword weakness as Groups.xml/Services.xml. runAs +
+     cpassword is the credential the task authenticates with. -->
+<ScheduledTasks clsid="{CC63F200-7309-4ba0-B154-A71CD118DBCC}">
+  <TaskV2 clsid="{D8896631-B747-47a7-84A6-C155337F3BC8}"
+          name="RollupInventory"
+          image="0"
+          changed="2026-04-18 07:31:52"
+          uid="{5E6F7081-92A3-B4C5-D6E7-F80912233C4D}">
+    <Properties action="C"
+                name="RollupInventory"
+                runAs="CONTOSO\svc_inventory"
+                cpassword="edBSHOwhZLTjt/QS9FeIcJ83mjWA98gw9guKOhJOdcqh+ZGMeXOsQbCpZ3xUjTLfCuNH8pG5aSVYdYw/NglVmQ"
+                logonType="Password">
+      <Task version="1.2">
+        <Principals>
+          <Principal id="Author">
+            <UserId>CONTOSO\svc_inventory</UserId>
+            <LogonType>Password</LogonType>
+          </Principal>
+        </Principals>
+        <Actions Context="Author">
+          <Exec>
+            <Command>\\contoso.com\netlogon\inventory.cmd</Command>
+          </Exec>
+        </Actions>
+      </Task>
+    </Properties>
+  </TaskV2>
+</ScheduledTasks>

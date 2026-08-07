@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- C:\Users\mwong\AppData\Roaming\FileZilla\recentservers.xml
+     Passwords are base64 only (encoding="base64"), no encryption.
+     'V2ViMDMtRlRQLTIwMjY=' -> 'Web03-FTP-2026'  -->
+<FileZilla3 version="3.66.4" platform="windows">
+  <RecentServers>
+    <Server>
+      <Host>web03.fabrikam.com</Host>
+      <Port>21</Port>
+      <Protocol>0</Protocol>
+      <Type>0</Type>
+      <User>webadmin</User>
+      <Pass encoding="base64">V2ViMDMtRlRQLTIwMjY=</Pass>
+      <Logontype>1</Logontype>
+    </Server>
+    <Server>
+      <Host>203.0.113.99</Host>
+      <Port>990</Port>
+      <Protocol>3</Protocol>
+      <Type>0</Type>
+      <User>mwong</User>
+      <Pass encoding="base64">RmFicmlrYW0tRlRQUy0yMDI2IQ==</Pass>
+      <Logontype>1</Logontype>
+    </Server>
+  </RecentServers>
+</FileZilla3>

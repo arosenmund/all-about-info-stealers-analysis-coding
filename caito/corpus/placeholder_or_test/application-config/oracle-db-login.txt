@@ -1,0 +1,1 @@
+payroll_app:P@yroll-Ora-2026@oradb01.example.com:1521/ORCLPDB1

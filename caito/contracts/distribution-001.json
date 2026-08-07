@@ -1,0 +1,46 @@
+{
+  "contract_version": "distribution-001",
+  "purpose": "Reproducible platform-specific scanner-POC distribution layout for the manifest-validated local CNN observation runtime.",
+  "platforms": {
+    "windows-x86_64": {
+      "rust_target": "x86_64-pc-windows-msvc",
+      "binary": "classifier-cli.exe",
+      "archive": "zip"
+    },
+    "linux-x86_64": {
+      "rust_target": "x86_64-unknown-linux-gnu",
+      "binary": "classifier-cli",
+      "archive": "tar.gz"
+    }
+  },
+  "required_contents": [
+    "platform binary",
+    "runtime support files required by the platform build when the ONNX Runtime static library does not embed them",
+    "artifacts/cnn/cnn-fp32-003.onnx",
+    "artifacts/cnn/cnn-fp32-003.manifest.json",
+    "docs/distribution-001.md",
+    "docs/runtime-scan-001.md",
+    "CHECKSUMS.sha256",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "optional_contents": [
+    "cnn-int8-001 ONNX model and manifest"
+  ],
+  "runtime_behavior": [
+    "local artifact paths only",
+    "no runtime network access, telemetry, persistence, or model download",
+    "explicit non-empty scan root only",
+    "aggregate/redacted output by default",
+    "full canonical matching paths only with --show-paths"
+  ],
+  "non_claims": [
+    "This is a scanner observation POC, not a calibrated hybrid classification or policy release.",
+    "A successful cross-build alone is not native platform qualification.",
+    "The release holdout remains unused."
+  ],
+  "platform_prerequisites": {
+    "windows-x86_64": "Windows 10 or later with DirectX 12 support and the Microsoft Visual C++ 2015-2022 Redistributable installed; DirectML.dll is bundled, while system Windows and Visual C++ runtime DLLs are not.",
+    "linux-x86_64": "x86_64 Linux with glibc 2.38 or newer and libstdc++.so.6 providing GLIBCXX_3.4.31 or newer. The current ONNX Runtime library is statically linked."
+  },
+  "integrity": "SHA-256 checksums cover every regular file in the unpacked bundle except CHECKSUMS.sha256 itself."
+}

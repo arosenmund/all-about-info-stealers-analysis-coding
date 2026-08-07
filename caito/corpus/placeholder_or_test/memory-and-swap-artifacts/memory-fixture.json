@@ -1,0 +1,6 @@
+{
+  "cleartext_value": "SAMPLE_CLEARTEXT_VALUE_ROMEO",
+  "hash_example": "PLACEHOLDER_HASH_EXAMPLE_SIERRA",
+  "session_secret": "NOT_A_LIVE_SESSION_SECRET_TANGO",
+  "annotation": "synthetic-memory-fixture-only"
+}

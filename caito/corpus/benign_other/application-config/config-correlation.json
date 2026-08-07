@@ -1,0 +1,6 @@
+{
+  "deployment_note": "catalog-service documentation profile",
+  "correlation_id": "57f30570-3b71-4cd8-b3a4-bd22c0a82813",
+  "schema_reference": "https://schemas.example.invalid/catalog/v4",
+  "asset_checksum": "sha256:3c0a93d560d91de5c8f2046c89613c86c1b9f56825c83f9d529d35eb9180aa42"
+}

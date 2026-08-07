@@ -1,0 +1,20 @@
+# Salts, IVs, and nonces are MEANT to be stored/transmitted in the clear next to
+# the data they protect. They're inputs to a KDF/cipher, not secrets themselves.
+# Random-looking hex/base64 — classic false positives.
+
+# bcrypt hash: the salt is embedded in the string (chars 8-28). The whole thing
+# is a VERIFIER, not a reversible credential:
+$2b$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUW
+
+# Argon2 / PBKDF2 encoded forms — params + salt + hash, all public:
+$argon2id$v=19$m=65536,t=3,p=4$ZmFrZVNhbHRFeGFtcGxlMDEyMw$fakeArgon2HashOutputExample0123456789abcdefghij
+$pbkdf2-sha256$29000$ZmFrZVNhbHQwMTIzNDU2Nzg5$fakePbkdf2DerivedKeyExample0123456789abcdef
+
+# Content-Security-Policy nonce (regenerated per response):
+Content-Security-Policy: script-src 'nonce-r4nd0mNonceExample0123456789=='
+
+# AES-GCM IV / nonce stored alongside ciphertext (12 bytes hex):
+iv=8f2a1c7d3e5b609481f2c3d4  tag=a1b2c3d4e5f60718293a4b5c6d7e8f90
+
+# OAuth PKCE / anti-replay nonce + state (public by protocol):
+state=8091a2b3c4d5e6f708192a3b  nonce=1a2b3c4d5e6f7081  code_challenge=fakePkceChallenge0123456789abcdef

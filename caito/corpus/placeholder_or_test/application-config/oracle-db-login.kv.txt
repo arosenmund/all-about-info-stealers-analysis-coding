@@ -1,0 +1,5 @@
+host: oradb01.example.com
+port: 1521
+service_name: ORCLPDB1
+username: payroll_app
+password: P@yroll-Ora-2026

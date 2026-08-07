@@ -1,0 +1,20 @@
+{
+  "//": "C:\\Users\\jdoe\\.docker\\config.json  -- auths[].auth is base64('user:password'), NOT encryption.",
+  "//2": "echo 'ZGVwbG95OkQzcGxveS1SZWc9c3RyeS0yMDI2' | base64 -d  ->  deploy:D3ploy-Reg=stry-2026",
+  "auths": {
+    "registry.example.com": {
+      "auth": "ZGVwbG95OkQzcGxveS1SZWc9c3RyeS0yMDI2"
+    },
+    "https://index.docker.io/v1/": {
+      "auth": "amRvZTpEMGNrM3JodWItMjAyNiE=",
+      "email": "jdoe@example.com"
+    },
+    "203.0.113.50:5000": {
+      "auth": "YWRtaW46cHJpdmF0ZS1yZWdpc3RyeS1wdw=="
+    }
+  },
+  "credsStore": "",
+  "HttpHeaders": {
+    "User-Agent": "Docker-Client/24.0.7 (windows)"
+  }
+}

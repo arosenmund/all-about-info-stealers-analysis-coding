@@ -1,0 +1,31 @@
+{
+  "preprocessing_version": "preprocess-001",
+  "input_schema_version": "input-001",
+  "jsonl": {
+    "line_max_bytes": 16384
+  },
+  "candidate": {
+    "encoding": "utf-8",
+    "invalid_encoding": "reject",
+    "transport_max_bytes": 4096,
+    "model_width_bytes": 512,
+    "byte_id_mapping": "identity_0_to_255",
+    "padding_byte_id": 256,
+    "truncation": "right",
+    "padding": "right"
+  },
+  "context": {
+    "unicode_normalization": "NFC",
+    "line_ending_normalization": "LF",
+    "key_max_bytes": 128,
+    "line_max_bytes": 2048,
+    "nearby_line_max_bytes": 512,
+    "before_max_items": 4,
+    "after_max_items": 4,
+    "transport_total_max_bytes": 8192,
+    "normalized_total_max_bytes": 8192,
+    "candidate_replacement": "<CANDIDATE>",
+    "semantic_context_over_limit": "reject",
+    "envelope_format": "key={key}\\nline={line}\\nbefore={before}\\nafter={after}"
+  }
+}

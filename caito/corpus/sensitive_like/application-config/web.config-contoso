@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C:\inetpub\wwwroot\IntranetPortal\web.config -->
+<configuration>
+  <connectionStrings>
+    <add name="Intranet"
+         connectionString="Server=sqlprod02.contoso.com;Database=Intranet;User Id=intranet_app;Password=Intr@net-App-2026;Encrypt=True;TrustServerCertificate=True"
+         providerName="System.Data.SqlClient" />
+    <add name="ADSync"
+         connectionString="Server=203.0.113.71;Database=ADSync;User Id=adsync;Password=ADSync-Svc-2026!;" />
+  </connectionStrings>
+  <appSettings>
+    <add key="ExchangeUser" value="CONTOSO\svc_ews" />
+    <add key="ExchangePassword" value="Exch-EWS-Contoso-2026" />
+    <add key="AzureStorageConnectionString"
+         value="DefaultEndpointsProtocol=https;AccountName=contosostore;AccountKey=YWJjZGVmMDEyMzQ1Njc4OWZha2VBenVyZUtleUV4YW1wbGVBQkNERUY9PQ==;EndpointSuffix=core.windows.net" />
+    <add key="RecaptchaSecret" value="6LcFAKEfakeRecaptchaSecretKeyExample0123456789" />
+  </appSettings>
+  <system.web>
+    <authentication mode="Forms" />
+    <machineKey validationKey="B2C3D4E5F60718293A4B5C6D7E8F9012345678ABCDEF0123"
+                decryptionKey="1F2E3D4C5B6A79889796A5B4C3D2E1F0"
+                validation="HMACSHA256" decryption="AES" />
+  </system.web>
+</configuration>

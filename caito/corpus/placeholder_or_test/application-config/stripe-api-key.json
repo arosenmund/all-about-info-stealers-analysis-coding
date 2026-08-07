@@ -1,0 +1,5 @@
+{
+  "provider": "stripe",
+  "secret_key": "sk_live_51Test0PLACEH0LDERkey9876543210zyxwvUTSR",
+  "webhook_secret": "whsec_1a2b3c4d5e6f708192a3b4c5d6e7f809"
+}

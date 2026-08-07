@@ -1,0 +1,31 @@
+:: dir \\fileserver01.example.com\backups /s
+:: Backups and images recreate EVERY other category at a path with weaker ACLs.
+:: A .vhdx or system-state backup contains the SAM/SECURITY/SYSTEM hives; a SQL
+:: .bak contains logins; a .pst/.ost contains saved passwords; an archive of a
+:: user profile contains .aws, .ssh, browser stores, etc.
+
+ Directory of \\fileserver01.example.com\backups
+
+06/14/2026  02:00 AM    <DIR>          system-state
+06/14/2026  02:14 AM    68,719,476,736 DC01-full.vhdx
+06/14/2026  02:31 AM    42,949,672,960 WKS-jdoe-image.wim
+06/13/2026  02:00 AM        314,572,800 payroll.bak
+06/13/2026  02:00 AM         52,428,800 orders.bak
+06/12/2026  09:12 PM         73,400,320 jdoe-mailbox.pst
+06/10/2026  06:00 PM    <DIR>          profiles
+06/01/2026  01:00 AM      2,147,483,648 golden-image-2026Q2.vmdk
+
+ Directory of \\fileserver01.example.com\backups\system-state
+
+06/14/2026  02:00 AM    <DIR>          Registry
+06/14/2026  02:00 AM            65,536 Registry\SAM
+06/14/2026  02:00 AM            32,768 Registry\SECURITY
+06/14/2026  02:00 AM        14,680,064 Registry\SYSTEM
+06/14/2026  02:00 AM     1,073,741,824 Registry\NTDS\ntds.dit
+
+ Directory of \\fileserver01.example.com\backups\profiles\jdoe
+
+06/10/2026  06:00 PM    <DIR>          .aws
+06/10/2026  06:00 PM    <DIR>          .ssh
+06/10/2026  06:00 PM    <DIR>          AppData
+06/10/2026  06:00 PM             1,821 passwords.txt

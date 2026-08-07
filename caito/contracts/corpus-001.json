@@ -1,0 +1,16 @@
+{
+  "corpus_contract_version": "corpus-001",
+  "crawl_contract_version": "crawl-001",
+  "default_root": "<repository>/corpus, derived from package location rather than the current directory",
+  "layout": "<corpus-root>/<primary-label>/<optional-artifact-family>/<files...>",
+  "primary_labels": [
+    "sensitive_like",
+    "placeholder_or_test",
+    "benign_other"
+  ],
+  "label_source": "The first relative directory beneath the selected corpus root is the ground-truth primary label.",
+  "artifact_family_source": "The optional second relative directory is artifact-family metadata; deeper directories do not change either annotation.",
+  "unlabeled_files": "reject corpus build",
+  "inference_rule": "Folder labels are corpus annotations only. They must not become automatic classifications for arbitrary scan targets.",
+  "retention": "in-memory only; later manifests and reports are separately versioned"
+}

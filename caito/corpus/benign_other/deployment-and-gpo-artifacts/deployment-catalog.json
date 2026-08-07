@@ -1,0 +1,6 @@
+{
+  "package_label": "public-demo-client",
+  "installer_checksum": "sha256:b309c8e115fd0a8236c421ea992e47e3a5dc8d1ba4f650775c244ce309c78a1b",
+  "distribution_url": "https://downloads.example.invalid/demo-client",
+  "install_context": "nonprivileged-documentation-run"
+}

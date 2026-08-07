@@ -1,0 +1,6 @@
+{
+  "entry_kind": "public-root-certificate",
+  "fingerprint": "sha256:217f9d0597ad8c43d22b6e853f7860ae011f549ac76e84e194662fb380f3906a",
+  "distribution_note": "shared-training-trust-anchor",
+  "certificate_url": "https://pki.example.invalid/roots/docs-root"
+}

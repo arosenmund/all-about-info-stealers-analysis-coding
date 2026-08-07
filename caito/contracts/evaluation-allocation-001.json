@@ -1,0 +1,39 @@
+{
+  "contract_version": "evaluation-allocation-001",
+  "purpose": "Renew the final evaluation boundary after baseline-selection-001 by preserving its observed test partition as historical-only and reserving release-holdout-001 for one final release confirmation.",
+  "input_contracts": [
+    "corpus-manifest-002",
+    "duplicate-001",
+    "split-002",
+    "release-holdout-001"
+  ],
+  "retention": "in-memory only",
+  "allocation_names": [
+    "train",
+    "validation",
+    "calibration",
+    "historical_test",
+    "release_holdout"
+  ],
+  "rules": {
+    "development": "Non-release records retain their deterministic split-002 assignment except test records, which are renamed historical_test and excluded from future development decisions.",
+    "release_holdout": "Every artifact family named release-holdout-01 through release-holdout-08 for each primary label is assigned release_holdout.",
+    "duplicate_isolation": "If a split-002 isolation component contains both release-holdout and development groups, fail without an allocation.",
+    "finality": "Do not use release_holdout for training, architecture selection, hyperparameter selection, calibration, policy selection, or intermediate comparison. Use it once only after the release candidate and artifacts are frozen."
+  },
+  "summary": [
+    "record count",
+    "group count",
+    "component count",
+    "per-allocation record/group/component/class counts"
+  ],
+  "exclusions": [
+    "candidate text",
+    "context text",
+    "candidate fingerprints",
+    "filesystem paths",
+    "record IDs",
+    "persisted allocation files",
+    "per-record predictions"
+  ]
+}

@@ -1,0 +1,19 @@
+# Electron chat apps keep auth/session tokens in a LevelDB under the app's
+# Local Storage. These are recovered by grepping the .ldb/.log files.
+
+=== Slack ===============================================================
+# %APPDATA%\Slack\Local Storage\leveldb\*.ldb
+# localConfig_v2 JSON holds a token per workspace (xoxc-) + the d cookie.
+"token":"xoxc-1111111111111-2222222222222-3333333333333-fakeSlackTokenABCDEF0123456789"
+"d cookie (Cookies db)":"xoxd-fakeSlackDCookieValueABCDEF0123456789%2Babcdef%3D%3D"
+
+=== Discord =============================================================
+# %APPDATA%\discord\Local Storage\leveldb\*.ldb  (and *.log)
+# The "token" string is the account bearer token.
+token: "mfa.FAKEdiscordTokenABCDEF0123456789ghijklmnopqrstuvwxyz0123456789ABCDEFghij"
+
+=== Microsoft Teams (classic) ===========================================
+# %APPDATA%\Microsoft\Teams\Cookies  and  ...\Local Storage\leveldb
+# skypetoken_asm / authtoken bearer JWTs.
+authtoken: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2FwaS5zcGFjZXMuc2t5cGUuY29tIn0.FAKEjwtSignatureABCDEF0123456789"
+skypetoken_asm: "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqZG9lQGV4YW1wbGUuY29tIn0.FAKEskypeTokenSig0123456789"

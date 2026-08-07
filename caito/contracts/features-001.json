@@ -1,0 +1,44 @@
+{
+  "feature_schema_version": "features-001",
+  "input_contract": "classifier-input-002",
+  "preprocessing_contract": "preprocess-001",
+  "retention": "in-memory only",
+  "vector_encoding": "ordered float64 values in feature_names order",
+  "features": [
+    {"name": "candidate_byte_length", "range": [1.0, 4096.0]},
+    {"name": "candidate_length_normalized", "range": [0.0, 1.0]},
+    {"name": "candidate_entropy_bits_per_byte", "range": [0.0, 8.0]},
+    {"name": "ascii_letter_byte_ratio", "range": [0.0, 1.0]},
+    {"name": "ascii_digit_byte_ratio", "range": [0.0, 1.0]},
+    {"name": "ascii_whitespace_byte_ratio", "range": [0.0, 1.0]},
+    {"name": "ascii_punctuation_byte_ratio", "range": [0.0, 1.0]},
+    {"name": "non_ascii_byte_ratio", "range": [0.0, 1.0]},
+    {"name": "unique_byte_ratio", "range": [0.0, 1.0]},
+    {"name": "max_repeated_byte_run_ratio", "range": [0.0, 1.0]},
+    {"name": "delimiter_byte_ratio", "range": [0.0, 1.0]},
+    {"name": "is_uuid_like", "range": [0.0, 1.0]},
+    {"name": "is_hex_digest_like", "range": [0.0, 1.0]},
+    {"name": "is_base64_like", "range": [0.0, 1.0]},
+    {"name": "is_assignment_extraction", "range": [0.0, 1.0]},
+    {"name": "context_has_placeholder_language", "range": [0.0, 1.0]},
+    {"name": "candidate_in_nearby_context", "range": [0.0, 1.0]}
+  ],
+  "context_rules": {
+    "placeholder_language": "Case-insensitive Unicode-NFC word match for demo, dummy, example, fake, fixture, mock, nonprod, placeholder, sample, synthetic, test, or testing in the key/before/after context fields.",
+    "nearby_occurrence": "Unicode-NFC exact candidate occurrence in the key/before/after fields; the candidate-bearing primary context line is excluded."
+  },
+  "shape_rules": {
+    "uuid": "Canonical 8-4-4-4-12 hexadecimal UUID.",
+    "hex_digest": "Exactly 32, 40, 64, 96, or 128 hexadecimal characters.",
+    "base64_like": "At least 16 base64/base64url characters with optional up-to-two padding characters and at least two digits or base64-special characters."
+  },
+  "exclusions": [
+    "candidate text",
+    "context text",
+    "filesystem paths",
+    "candidate fingerprints",
+    "classification scores",
+    "automatic labels or policy decisions"
+  ],
+  "future_handoff": "Feature goldens, grouped false-positive audit, and owner review must occur before Rust parity migration or fusion use."
+}

@@ -1,0 +1,6 @@
+{
+  "provider_name": "Example Documentation Identity",
+  "provider_id": "d1d625f6-3c77-41d2-80a2-b62fdb55f88d",
+  "discovery_url": "https://identity.example.invalid/.well-known/openid-configuration",
+  "catalog_scope": "non-authenticating-reference-entry"
+}

@@ -1,0 +1,17 @@
+{
+  "crawl_contract_version": "crawl-001",
+  "scope": "one explicitly selected local directory",
+  "retention": "in-memory only",
+  "encoding": "utf-8",
+  "follow_symlinks": false,
+  "emit_paths_or_contents": false,
+  "limits": {
+    "max_files": 512,
+    "max_file_bytes": 1048576,
+    "max_total_bytes": 8388608
+  },
+  "allowed_suffixes": null,
+  "additional_excluded_path_components": [],
+  "selection_rule": "All regular files beneath the selected root are eligible, including hidden, key, certificate, configuration, and extensionless files. Files that are not strict UTF-8 text or exceed a byte budget are skipped.",
+  "future_handoff": "A later versioned Stage 02 ingestion contract converts in-memory CrawlItem values to classifier records. crawl-001 does not reinterpret input-001."
+}

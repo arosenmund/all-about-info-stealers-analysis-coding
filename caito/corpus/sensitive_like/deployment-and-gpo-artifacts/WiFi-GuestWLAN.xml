@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- Second WLAN profile. protected=false here means keyMaterial is CLEARTEXT
+     right in the XML (happens when profiles are exported with key=clear or
+     provisioned in the clear). No DPAPI step needed. -->
+<WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
+  <name>Contoso-Guest</name>
+  <SSIDConfig>
+    <SSID>
+      <hex>436F6E746F736F2D4775657374</hex>
+      <name>Contoso-Guest</name>
+    </SSID>
+  </SSIDConfig>
+  <connectionType>ESS</connectionType>
+  <connectionMode>manual</connectionMode>
+  <MSM>
+    <security>
+      <authEncryption>
+        <authentication>WPA2PSK</authentication>
+        <encryption>AES</encryption>
+        <useOneX>false</useOneX>
+      </authEncryption>
+      <sharedKey>
+        <keyType>passPhrase</keyType>
+        <protected>false</protected>
+        <keyMaterial>Gu3st-WiFi-Contoso-2026</keyMaterial>
+      </sharedKey>
+    </security>
+  </MSM>
+</WLANProfile>

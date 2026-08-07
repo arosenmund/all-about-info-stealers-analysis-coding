@@ -1,0 +1,13 @@
+# PSReadLine history — every command every PowerShell session typed, forever:
+# C:\Users\jdoe\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+Get-Process
+cd C:\deploy
+$cred = New-Object System.Management.Automation.PSCredential('EXAMPLE\svc_deploy', (ConvertTo-SecureString 'D3ploy-Svc-2026!' -AsPlainText -Force))
+Enter-PSSession -ComputerName dc01.example.com -Credential $cred
+net use Z: \\fileserver01.example.com\backups /user:EXAMPLE\svc_backup W1nt3r-Backup-2026!
+$env:AWS_SECRET_ACCESS_KEY = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
+mysql -h mysql01.example.com -u wp_admin -pWp-Bl0g-DB-2026! wp_blog
+Invoke-RestMethod -Uri https://api.example.com/v1/deploy -Headers @{ Authorization = 'Bearer ghp_AbCdEfGhIjKlMnOpQrStUvWxYz0123456789' }
+sqlcmd -S sqlprod01.example.com -U sa -P 'S3rver-SQL-2026#Payroll' -Q "SELECT name FROM sys.databases"
+ssh -i C:\Users\jdoe\.ssh\deploy admin@198.51.100.10
+Clear-History

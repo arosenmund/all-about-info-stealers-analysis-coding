@@ -1,0 +1,6 @@
+{
+  "server": "sqldb-payroll01.example.com",
+  "database": "Payroll",
+  "user_id": "sa",
+  "password": "Sq1DB-Payroll-P0rtal-2026$"
+}

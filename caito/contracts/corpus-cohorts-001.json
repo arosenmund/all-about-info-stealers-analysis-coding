@@ -1,0 +1,27 @@
+{
+  "contract_version": "corpus-cohorts-001",
+  "purpose": "Experimental initial cohort layout superseded before Phase 1 review because its 168 files exceeded the fixed crawl-001 file budget when combined with the existing corpus.",
+  "corpus_layout": "<explicit-root>/<primary-label>/generated-cohort-XX/cohort-XX.conf",
+  "primary_labels": [
+    "sensitive_like",
+    "placeholder_or_test",
+    "benign_other"
+  ],
+  "experimental_cohort_shape": {
+    "artifact_families_per_primary_label": 8,
+    "documents_per_artifact_family": 7,
+    "assignment_candidates_per_document": 5,
+    "total_generated_documents": 168,
+    "total_generated_candidates": 840
+  },
+  "content": {
+    "source": "deterministic SHA-256-derived synthetic strings",
+    "format": "one supported key=value assignment per line",
+    "safety": "The generator does not use or emit live credentials, local collected values, filesystem paths, per-record IDs, or scanner predictions."
+  },
+  "status": "superseded-by-corpus-cohorts-002",
+  "evaluation": {
+    "artifact_family_role": "The experimental generated-cohort-XX directories were corpus-derived evaluation-only template proxies under split-002, never scan-time features.",
+    "duplicate_expectation": "Generated candidate values are unique and intentionally diverse; duplicate-001 remains the authoritative post-generation review."
+  }
+}

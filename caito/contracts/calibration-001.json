@@ -1,0 +1,35 @@
+{
+  "contract_version": "calibration-001",
+  "purpose": "Python-only, aggregate-safe probability-calibration and abstention POC after baseline-003 model selection.",
+  "baseline_contract": "baseline-003",
+  "quality_gate_contract": "phase-01-quality-gate-002",
+  "split_contract": "split-002",
+  "selection_protocol": {
+    "training": "Fit baseline parameters on train only.",
+    "temperature": "Select the scalar temperature by calibration-split negative log likelihood only.",
+    "abstention": "Select one predeclared confidence threshold on calibration only, maximizing non-abstained macro F1 subject to minimum coverage.",
+    "test": "Use once for confirmation after temperature and threshold selection; never tune on test."
+  },
+  "temperature": {
+    "method": "multiclass scalar temperature scaling over probability-derived logits",
+    "candidates": [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0],
+    "tie_break": "lowest temperature"
+  },
+  "abstention": {
+    "rule": "Abstain when the maximum calibrated class probability is below the selected threshold.",
+    "threshold_candidates": [0.34, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+    "minimum_non_abstained_coverage": 0.7,
+    "selection": "highest calibration non-abstained macro F1, then higher coverage, then lower threshold"
+  },
+  "evaluation": {
+    "ece_bins": 10,
+    "metrics": ["uncalibrated ECE", "calibrated ECE", "non-abstained coverage", "non-abstained macro F1"],
+    "targets": {
+      "expected_calibration_error_maximum": 0.08,
+      "non_abstained_coverage_minimum": 0.7,
+      "non_abstained_validation_macro_f1_minimum": 0.8
+    }
+  },
+  "retention": "in-memory only; no weights, calibrated predictions, per-record decisions, candidate text, context text, paths, or IDs are written",
+  "scope": "Research evidence only. This contract does not authorize scanner decisions, a default policy, or a Rust port."
+}

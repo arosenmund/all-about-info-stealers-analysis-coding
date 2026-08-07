@@ -1,0 +1,28 @@
+C:\Users\jdoe> cmdkey /list
+
+Currently stored credentials:
+
+    Target: Domain:interactive=EXAMPLE\jdoe
+    Type: Domain Password
+    User: EXAMPLE\jdoe
+
+    Target: LegacyGeneric:target=MicrosoftAccount:user=jdoe@example.com
+    Type: Generic
+    User: jdoe@example.com
+
+    Target: Domain:target=TERMSRV/fileserver01.example.com
+    Type: Domain Password
+    User: EXAMPLE\svc_backup
+
+    Target: WindowsLive:target=virtualapp/didlogical
+    Type: Generic
+    User: 02abcdef1234567890
+
+    Target: LegacyGeneric:target=git:https://github.example.com
+    Type: Generic
+    User: jdoe
+    Local machine persistence
+
+    Target: Domain:target=fileserver01.example.com
+    Type: Domain Password
+    User: EXAMPLE\svc_backup

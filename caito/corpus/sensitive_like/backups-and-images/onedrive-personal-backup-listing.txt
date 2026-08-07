@@ -1,0 +1,27 @@
+:: User-driven "backups" — the messy folders people zip up before a laptop
+:: refresh and drop in OneDrive/Dropbox/a USB drive. These bypass every server
+:: ACL and often sync to a personal cloud account.
+
+C:\Users\mwong\OneDrive\Old Laptop Backup> dir /s /b
+
+C:\Users\mwong\OneDrive\Old Laptop Backup\profile.zip
+C:\Users\mwong\OneDrive\Old Laptop Backup\Documents\passwords.txt
+C:\Users\mwong\OneDrive\Old Laptop Backup\Documents\Database.kdbx
+C:\Users\mwong\OneDrive\Old Laptop Backup\Documents\tax-2025.pdf
+C:\Users\mwong\OneDrive\Old Laptop Backup\.ssh\id_rsa
+C:\Users\mwong\OneDrive\Old Laptop Backup\.ssh\id_rsa.pub
+C:\Users\mwong\OneDrive\Old Laptop Backup\.aws\credentials
+C:\Users\mwong\OneDrive\Old Laptop Backup\AppData\Roaming\Mozilla\Firefox\Profiles\7k2f9x1q.default-release\logins.json
+C:\Users\mwong\OneDrive\Old Laptop Backup\AppData\Roaming\Mozilla\Firefox\Profiles\7k2f9x1q.default-release\key4.db
+C:\Users\mwong\OneDrive\Old Laptop Backup\Outlook\mwong-archive.pst
+
+:: unzip profile.zip ->
+Archive:  profile.zip
+  inflating: AppData/Local/Google/Chrome/User Data/Default/Login Data
+  inflating: AppData/Local/Google/Chrome/User Data/Local State
+  inflating: AppData/Local/Microsoft/Credentials/A1F4C9E82B3D4E5A9C8B7F6E5D4C3B2A
+  inflating: AppData/Roaming/Microsoft/Protect/S-1-5-21-1993962763-4083295800-2358739571/7e6b5d4c-3a2e-1f0d-9c8b-7a6f5e4d3c2b
+
+:: Note: the profile zip carried BOTH the Chrome store AND the DPAPI master key
+:: folder (Microsoft\Protect\<SID>) — so the browser passwords are decryptable
+:: offline with the user's password. That co-location is the whole game.

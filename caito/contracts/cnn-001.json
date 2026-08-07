@@ -1,0 +1,71 @@
+{
+  "contract_version": "cnn-001",
+  "purpose": "Define the first deterministic Python FP32 byte-CNN POC before ONNX export, quantization, Rust inference, or release-holdout evaluation.",
+  "input_contracts": [
+    "classifier-input-002",
+    "preprocess-001",
+    "evaluation-allocation-001"
+  ],
+  "class_order": [
+    "sensitive_like",
+    "placeholder_or_test",
+    "benign_other"
+  ],
+  "input": {
+    "tensor_name": "byte_ids",
+    "shape": ["batch", 512],
+    "dtype": "int64",
+    "vocabulary_size": 257,
+    "padding_id": 256,
+    "preprocessing_version": "preprocess-001"
+  },
+  "architecture": {
+    "byte_embedding_dimensions": 16,
+    "parallel_conv_widths": [2, 3, 4, 5],
+    "filters_per_width": 64,
+    "pooling": ["global_max", "global_mean"],
+    "dense_dimensions": 64,
+    "dropout": 0.2,
+    "output": "three-class logits"
+  },
+  "training": {
+    "device": "cpu",
+    "seed": 20260807,
+    "epochs": 20,
+    "batch_size": 64,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "class_weighting": "inverse train-class frequency",
+    "partition": "train only",
+    "selection": "No early stopping, hyperparameter tuning, or architecture choice uses calibration, historical_test, or release_holdout."
+  },
+  "development_evaluation": {
+    "splits": ["validation", "calibration"],
+    "metrics": ["accuracy", "macro_f1", "per-class precision/recall/f1", "one-vs-rest average precision", "recall at empirical FPR 0.10 and 0.01", "confusion matrix"],
+    "validation_entry": {
+      "macro_f1_minimum": 0.65,
+      "sensitive_like_f1_minimum": 0.7,
+      "placeholder_or_test_f1_minimum": 0.55,
+      "benign_other_f1_minimum": 0.55,
+      "sensitive_like_recall_at_fpr_0_10_minimum": 0.5
+    }
+  },
+  "release_holdout": "release_holdout is excluded from this POC. It may be evaluated once only after the complete CNN/retrieval/fusion/policy release candidate is frozen.",
+  "onnx_parity": {
+    "status": "next sub-phase after this FP32 POC passes",
+    "pytorch_to_onnx_max_absolute_logit_drift": 0.00001,
+    "pytorch_to_onnx_class_decisions": "identical on the frozen golden set",
+    "python_onnx_to_rust_ort_max_absolute_logit_drift": 0.00001,
+    "python_onnx_to_rust_ort_class_decisions": "identical on the frozen golden set"
+  },
+  "retention": "in-memory POC model and aggregate report only; no model artifact, ONNX graph, per-record predictions, candidate text, or policy decision is written at this stage.",
+  "exclusions": [
+    "release-holdout evaluation",
+    "quantization",
+    "Rust ort dependency",
+    "scanner decisions",
+    "network access",
+    "raw candidate reporting"
+  ]
+}

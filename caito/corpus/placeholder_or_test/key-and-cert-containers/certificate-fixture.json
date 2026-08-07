@@ -1,0 +1,6 @@
+{
+  "key_blob": "EXAMPLE_KEY_BLOB_LIMA",
+  "certificate_password": "INSERT_CERT_PASSWORD_MIKE",
+  "recovery_phrase": "SAMPLE_RECOVERY_PHRASE_NOVEMBER",
+  "annotation": "unusable-certificate-training-fixture"
+}

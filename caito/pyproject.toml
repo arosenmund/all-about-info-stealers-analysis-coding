@@ -1,0 +1,25 @@
+[project]
+name = "hybrid-edge-classifier"
+version = "0.0.0"
+description = "Offline Python research and artifact factory for a hybrid edge classifier"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "Proprietary" }
+authors = [{ name = "Project maintainers" }]
+dependencies = [
+    "torch==2.13.0",
+    "onnx==1.22.0",
+    "onnxruntime==1.28.0",
+    "onnxscript==0.7.1",
+]
+
+[tool.unittest]
+start-directory = "python/phase_99_tests"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]

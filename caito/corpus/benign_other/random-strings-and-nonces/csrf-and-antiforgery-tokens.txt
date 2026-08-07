@@ -1,0 +1,21 @@
+# CSRF / anti-forgery tokens. High-entropy, sit right next to login forms, and
+# get flagged constantly — but they are single-request, tied to a session, and
+# useless once the page reloads. Not authenticators on their own.
+
+<!-- rendered HTML -->
+<form method="post" action="/transfer">
+  <input type="hidden" name="__RequestVerificationToken"
+         value="CfDJ8FakeAntiForgeryTokenExample0123456789abcdefghijklmnopqrstuvwxyz-ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_fakefake" />
+  <input type="hidden" name="csrf_token"
+         value="a3f1c9e2b4d6f8091a2b3c4d5e6f7081" />
+</form>
+
+# As HTTP headers / meta tags:
+X-CSRF-Token: 7f3a1c9e2b4d6f8091a2b3c4d5e6f708192a3b4c5d6e7f80
+<meta name="csrf-token" content="8c2d4e6f8091a2b3c4d5e6f708192a3b4c5d6e7f">
+
+# Django/Rails/Laravel equivalents:
+csrfmiddlewaretoken=fakeDjangoCsrf0123456789abcdefABCDEFghijklmnopqrst
+XSRF-TOKEN=eyJpdiI6ImZha2VJViIsInZhbHVlIjoiZmFrZUxhcmF2ZWxYc3JmVG9rZW4ifQ==
+
+# Rotated every request; scoped to one user's session; not reusable. Decoy.

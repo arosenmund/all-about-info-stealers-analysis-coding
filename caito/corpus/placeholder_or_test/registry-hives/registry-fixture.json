@@ -1,0 +1,6 @@
+{
+  "sam_value": "SAMPLE_SAM_VALUE_DELTA",
+  "registry_password": "CHANGEME_REGISTRY_PASSWORD_ECHO",
+  "secret_name": "PLACEHOLDER_SECRET_NAME_FOXTROT",
+  "annotation": "synthetic-registry-fixture-only"
+}

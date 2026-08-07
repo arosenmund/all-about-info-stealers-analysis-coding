@@ -1,0 +1,20 @@
+# COM CLSIDs / interface GUIDs from HKCR / HKLM. Braced GUIDs look like secret
+# tokens but are PUBLIC, well-known component identifiers shipped with Windows.
+
+C:\> reg query HKCR\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}
+HKEY_CLASSES_ROOT\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}
+    (Default)    REG_SZ    This PC          ; <- the "This PC" shell folder, on every machine
+
+{645FF040-5081-101B-9F08-00AA002F954E}   Recycle Bin
+{871C5380-42A0-1069-A2EA-08002B30309D}   Internet Explorer
+{018D5C66-4533-4307-9B53-224DE2ED1FE6}   OneDrive
+
+# Same brace-GUID shape appears as:
+#  - Task Scheduler <clsid> attributes  (see ../../deployment-and-gpo-artifacts/Groups.xml)
+#  - typelib / AppID / DCOM registrations
+#  - MSI ProductCode / UpgradeCode:
+Installed products:
+  {90160000-008C-0000-1000-0000000FF1CE}   Microsoft Office
+  {AC76BA86-1033-1033-7760-0C0F074E4100}   Adobe Acrobat Reader
+
+# None of these authenticate anything. They are lookup keys.

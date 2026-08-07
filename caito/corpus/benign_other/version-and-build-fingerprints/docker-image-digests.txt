@@ -1,0 +1,22 @@
+# sha256: content digests everywhere in container tooling. 64-hex after
+# "sha256:" screams "secret hash" to a scanner; it's a public, immutable
+# pointer to an image/layer, printed in every pull and registry listing.
+
+$ docker images --digests
+REPOSITORY              TAG     DIGEST                                                                     IMAGE ID
+registry.example.com/api  1.4.2   sha256:9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08  3f7a1c9e2b4d
+nginx                    1.27    sha256:2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae  8c2d4e6f8091
+
+$ docker pull nginx@sha256:2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae
+
+# In a Kubernetes manifest / lockfile:
+image: registry.example.com/api@sha256:9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
+
+# OCI layer digests in a manifest.json:
+"layers": [
+  { "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+    "digest": "sha256:fcde2b2edba56bf408601fb721fe9b5c338d10ee429ea04fae5511b68fbf8fb9",
+    "size": 31428621 }
+]
+
+# These verify integrity and identity. Possessing a digest grants no access.

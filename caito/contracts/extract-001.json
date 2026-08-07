@@ -1,0 +1,20 @@
+{
+  "extraction_contract_version": "extract-001",
+  "input_contracts": ["crawl-001", "corpus-001"],
+  "output": "in-memory candidate/context records; not input-001",
+  "candidate_rules_in_order": [
+    "For one-line JSON objects, emit each non-empty top-level string field in source order.",
+    "Otherwise, emit one non-empty key=value or key:value assignment with an identifier-like key.",
+    "Trim assignment value whitespace, remove one matching outer quote pair, and remove a whitespace-delimited trailing # or // comment outside quotes."
+  ],
+  "json_value_types": ["string"],
+  "assignment_key_pattern": "[A-Za-z_][A-Za-z0-9_.-]*",
+  "context": {
+    "before_lines": 2,
+    "after_lines": 2,
+    "line_number_base": 1
+  },
+  "unmatched_lines": "ignore",
+  "folder_label_rule": "Corpus annotations are carried into extraction results for training/evaluation only; they are never target-scan predictions.",
+  "future_handoff": "A later versioned classifier-input contract will map extracted records to canonical preprocessing without changing input-001."
+}

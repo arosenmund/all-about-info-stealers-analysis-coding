@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Left behind after imaging. Common paths:
+     C:\Windows\Panther\unattend.xml
+     C:\Windows\Panther\Unattend\unattend.xml
+     C:\Windows\System32\Sysprep\unattend.xml
+     Passwords may be plaintext or Base64 (PlainText=false just base64-encodes;
+     the string "...AdministratorPassword" is appended before encoding). -->
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+  <settings pass="oobeSystem">
+    <component name="Microsoft-Windows-Shell-Setup"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral"
+               versionScope="nonSxS">
+      <UserAccounts>
+        <AdministratorPassword>
+          <Value>UABAAHMAcwB3ADAAcgBkACEAMgAwADIANgBBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=</Value>
+          <PlainText>false</PlainText>
+        </AdministratorPassword>
+        <LocalAccounts>
+          <LocalAccount wcm:action="add" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
+            <Password>
+              <Value>SW1hZ2VJbnN0YWxsMjAyNiFQYXNzd29yZA==</Value>
+              <PlainText>false</PlainText>
+            </Password>
+            <Group>Administrators</Group>
+            <Name>deployadmin</Name>
+          </LocalAccount>
+        </LocalAccounts>
+      </UserAccounts>
+      <AutoLogon>
+        <Password>
+          <Value>QXV0b0xvZ29uMjAyNiFQYXNzd29yZA==</Value>
+          <PlainText>false</PlainText>
+        </Password>
+        <Enabled>true</Enabled>
+        <Username>deployadmin</Username>
+        <LogonCount>1</LogonCount>
+      </AutoLogon>
+    </component>
+  </settings>
+</unattend>

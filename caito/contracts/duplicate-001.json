@@ -1,0 +1,39 @@
+{
+  "duplicate_analysis_contract_version": "duplicate-001",
+  "input_contracts": ["corpus-manifest-002", "classifier-input-002"],
+  "retention": "in-memory only",
+  "resource_limits": {
+    "max_records": 4096,
+    "behavior": "Fail the analysis without a partial report when the limit is exceeded."
+  },
+  "exact_comparison": {
+    "candidate_normalization": "Unicode NFC",
+    "rule": "Candidates are exact duplicates when their NFC-normalized values are equal."
+  },
+  "near_comparison": {
+    "metric": "sequence-matcher-nfc-001",
+    "candidate_normalization": "Unicode NFC",
+    "case_handling": "case-sensitive",
+    "minimum_candidate_characters": 12,
+    "threshold": 0.92,
+    "component_rule": "Each near-duplicate cluster is a connected component of non-exact pairwise matches at or above the threshold."
+  },
+  "cluster_fields": ["kind", "record_ids", "group_ids", "primary_labels"],
+  "summary": [
+    "record count",
+    "exact and near cluster counts",
+    "records in clusters",
+    "cross-group cluster and record counts",
+    "cross-label cluster and record counts"
+  ],
+  "exclusions": [
+    "candidate text",
+    "context text",
+    "candidate fingerprints",
+    "filesystem paths",
+    "persisted duplicate reports",
+    "automatic label correction",
+    "automatic split assignment"
+  ],
+  "future_handoff": "Split assignment must keep every duplicate-analysis component atomic and add approved template/project/language/chronology rules."
+}

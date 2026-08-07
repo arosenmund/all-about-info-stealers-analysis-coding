@@ -1,0 +1,6 @@
+{
+  "connection_secret": "INSERT_APP_CONNECTION_SECRET_BETA",
+  "client_reference": "EXAMPLE_APP_CLIENT_ID_GAMMA",
+  "key_material": "NOT_A_LIVE_APPLICATION_KEY_DELTA",
+  "annotation": "placeholder-only integration exercise"
+}

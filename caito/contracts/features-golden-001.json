@@ -1,0 +1,22 @@
+{
+  "feature_golden_contract_version": "features-golden-001",
+  "feature_schema_version": "features-001",
+  "classifier_input_contract": "classifier-input-002",
+  "preprocessing_contract": "preprocess-001",
+  "source_fixture": "tests/fixtures/features/features-001.jsonl",
+  "golden_output": "tests/golden/features/features-001.jsonl",
+  "retention": "committed synthetic test inputs plus non-reversible numeric goldens only",
+  "serialization": {
+    "encoding": "UTF-8 JSON Lines",
+    "values": "ordered float64 values in the frozen features-001 feature_names order",
+    "absolute_tolerance": 1e-12
+  },
+  "exclusions": [
+    "candidate text in the golden output",
+    "context text in the golden output",
+    "filesystem paths",
+    "classification scores",
+    "automatic labels or policy decisions"
+  ],
+  "acceptance": "The Python generator must be reproducible, Rust must match every value within the declared absolute tolerance, and schema/order mismatch must fail."
+}

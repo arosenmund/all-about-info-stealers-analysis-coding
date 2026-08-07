@@ -1,0 +1,18 @@
+# git log / object hashes. 40-hex SHA-1 (or 64-hex SHA-256 in newer repos).
+# Same length as password hashes; they identify commits/trees/blobs, not creds.
+
+$ git log --oneline --format="%H %an %s"
+3f7a1c9e2b4d6f8091a2b3c4d5e6f708192a3b4c  Alex Smith   Fix payroll rounding
+8c2d4e6f8091a2b3c4d5e6f708192a3b4c5d6e7f  Maria Wong   Bump dependencies
+d4c3b2a1f0e9d8c7b6a5948372615f4e3d2c1b0a  Jordan Doe   Initial commit
+
+$ git cat-file -p HEAD
+tree   b4c5d6e7f80912233c4d5e6f708192a3b4c5d6e7
+parent 8c2d4e6f8091a2b3c4d5e6f708192a3b4c5d6e7f
+author Alex Smith <asmith@example.com> 1793000000 -0500
+
+$ git ls-tree HEAD
+100644 blob 5c6d7e8f9012233c4d5e6f708192a3b4c5d6e7f8    README.md
+100644 blob 6d7e8f9012233c4d5e6f708192a3b4c5d6e7f809    package.json
+
+# Also everywhere in CI logs, GitHub URLs (/commit/<sha>), and Docker labels.

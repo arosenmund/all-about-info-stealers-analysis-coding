@@ -1,0 +1,27 @@
+{
+  "feature_audit_contract_version": "feature-audit-001",
+  "input_feature_schema": "features-001",
+  "input_requirement": "Corpus-labelled feature records only; every record must use a primary label from the project class order.",
+  "retention": "in-memory only",
+  "class_order": [
+    "sensitive_like",
+    "placeholder_or_test",
+    "benign_other"
+  ],
+  "statistics": {
+    "all_features": ["records", "mean", "minimum", "maximum"],
+    "boolean_features": ["activations", "activation_rate"],
+    "non_sensitive_proxy": "Combine placeholder_or_test and benign_other to identify boolean-feature activations that need false-positive review. This is not a classifier false-positive rate."
+  },
+  "exclusions": [
+    "candidate text",
+    "context text",
+    "filesystem paths",
+    "record IDs",
+    "document IDs",
+    "candidate fingerprints",
+    "classification scores",
+    "automatic labels or policy decisions"
+  ],
+  "future_handoff": "Use the audit to review feature semantics before freezing Python feature goldens, declaring numerical parity tolerances, or starting a Rust feature migration."
+}

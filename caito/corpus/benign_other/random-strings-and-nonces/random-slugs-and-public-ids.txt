@@ -1,0 +1,19 @@
+# Random-but-public identifiers: share slugs, short IDs, publishable keys.
+# Long, high-entropy, and safe — designed to appear in URLs and client code.
+
+# Publishable / client-side keys (vendor docs say these are OK to expose):
+Stripe publishable key:   pk_live_51Hq2eXAMPLEpublishableKEY0123456789abcdefABCD
+Google Maps browser key:  AIzaSyBrowserKeyMeantToBePublic0123456789abcdef   (restricted by HTTP referrer)
+Firebase apiKey:          AIzaSyFirebaseWebConfigKeyPublic0123456789abcde   (ships in every web app)
+Sentry public DSN:        https://benign7f3a1c9e2b4d@o889977.ingest.sentry.io/1029384
+Segment write key:        fakeSegmentWriteKeyClientSide0123456789
+
+# Share links / invite slugs (nanoid, base62) — grant scoped, revocable, often
+# expired access; not account credentials:
+https://drive.example.com/s/8kQ2rX9vL4mN7pB1
+https://app.example.com/invite/aB3dE5gH7jK9mN1p
+short.example.com/xY7zQ2
+
+# YouTube/asset IDs, feature-flag keys, and cache keys look the same:
+video id: dQw4w9WgXcQ
+flag:     ff_2b3c4d5e_new_checkout

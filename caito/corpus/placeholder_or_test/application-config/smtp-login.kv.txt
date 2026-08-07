@@ -1,0 +1,4 @@
+host: smtp.mailer.example.test
+port: 587
+username: mailer@example.test
+password: Smtp-R3lay-Mailer-2026#
