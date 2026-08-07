@@ -1,31 +1,21 @@
 # 03 · Introduction to InfoStealers
 
-**Lead:** Ryan · **Time:** 45 minutes
+**Lead:** Ryan
 
-## Goal
+**Time:** 15 minutes
 
-Understand the InfoStealer ecosystem and use Ghidra to identify how a representative LummaC2 sample discovers and selects target data.
+## Overview
+
+So uh, what's an infostealer? That's what we'll be covering here.
+
+This is a simple overview in which Ryan will discuss the topics below such that folks are aware of what infostealers are and will be ready to get hands-on in the next section to rip one apart :).
+
+We're going to walk through two example papers on LummaC2. It's as simple as that. Grab the two PDFs linked below, pop them open wherever you'd like, and let's boogie real quick. Then we can get to the real fun!
 
 ## Topics
 
 1. What an InfoStealer is and how the ecosystem has evolved.
-2. Why LummaC2 is a useful workshop case study.
-3. What data modern stealers target and why.
-4. A repeatable first-pass workflow in Ghidra.
-5. Recognizing and removing analysis obstacles.
-6. Tracing host enumeration and text-file targeting.
-7. Identifying cryptocurrency-wallet collection logic.
-
-## Analysis notebook
-
-For each behavior, record:
-
-| Question | Observation |
-|---|---|
-| What triggers the behavior? | |
-| What APIs, paths, or data structures are involved? | |
-| What data would a defender observe? | |
-| Which assumption should we verify dynamically? | |
+2. What data modern stealers target and why.
 
 ## References
 
