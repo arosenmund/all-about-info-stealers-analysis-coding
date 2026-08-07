@@ -44,3 +44,5 @@ Rename it **`find_foxmail_storage`**. It does path discovery, not theft yet:
 ### 6. Worth noting for the bigger picture
 
 7. `FUN_14002bb44` is shaping up to be the master module dispatcher — WinSCP and Foxmail both live under it. When you're ready, that function is the natural next pivot: enumerating everything it calls will give you the full list of theft modules (browsers, wallets, files grabber, etc.) in one place, rather than discovering them one string at a time.
+
+**[Next: Dispatcher Modules →](./07-dispatcher-modules.md)**

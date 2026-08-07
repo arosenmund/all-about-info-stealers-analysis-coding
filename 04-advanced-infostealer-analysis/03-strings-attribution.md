@@ -51,3 +51,5 @@ The Defined Strings table is a *curated* view. To search raw memory regardless o
     - Family attribution should not rest on this string alone — it needs corroboration from imports, decompiled behavior, or other independent evidence before you'd call it a finding rather than a lead.
 
 15. Keep this address (`140084920`) and the WinSCP strings (`140087418`) in your notes — both will come up again once we start tracing code in the next section.
+
+**[Next: Strings Decoding →](./04-strings-decoding.md)**

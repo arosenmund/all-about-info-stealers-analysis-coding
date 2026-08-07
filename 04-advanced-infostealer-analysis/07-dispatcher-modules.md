@@ -54,3 +54,5 @@ So the confirmed capability set, all reachable from `main` via this one dispatch
 This is a textbook, full-featured **infostealer** — and this single function is the map of everything it does. The earlier per-string discoveries (WinSCP, Foxmail) were just two branches of this tree.
 
 > **Same discipline as before:** every module above is a *statically-confirmed capability* (real code, resolved APIs, reachable from entry, gated by a live C2 config). Turning "capability" into "observed behavior" — and capturing the actual config the live C2 hands out — is the job of dynamic analysis / sandboxing, which is where you'd take this next.
+
+**[Next: Exfiltration via HTTP →](./08-exfiltration-http.md)**

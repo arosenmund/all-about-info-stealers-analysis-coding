@@ -88,3 +88,5 @@ Running the same routine across the rest of the blobs in `FUN_140002be0` recover
 | Output artifact names | `passwords.txt`, `v10.txt`, `v20.txt`, `wallets`, `browser: `, `profile: `, `url: `, `login: `, `password: ` |
 
 12. **Note what this confirms vs. what it doesn't:** decoding these strings tells you the binary *contains* the capability to resolve these DLLs/APIs and *contains* a live-looking C2 URL and POST-request scaffolding — that's strong, code-adjacent evidence (much stronger than the lone `stealc` path string). It is still not runtime proof by itself; the next step (which we'll do later) is to confirm these decoded values are actually *reachable* from `main` and consumed by the HTTP POST function (`FUN_14000c508`) we noted in the triage — not just sitting decoded in memory unused.
+
+**[Next: WinSCP Credentials →](./05-winscp-credentials.md)**

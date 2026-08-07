@@ -29,6 +29,8 @@ From VirusTotal:
 
 ## Triage Results
 
+The data below was provided by Sonnet 5 and has _not_ been modified on purpose:
+
 **Identity**
 - SHA256: `6e3b874fca2800811b2cf343690bdd24638e13cafd4b949bffd44c2c12ea0609`
 - MD5: `602205faa44744b304e61fd62c849a3f` | Imphash: `f456face36cfa724bf01290dd8927512`
@@ -55,3 +57,15 @@ From VirusTotal:
 **Notable non-findings**
 - No literal C2 domain/URL strings in cleartext (consistent with the Base64/RC4 string-obfuscation scheme found)
 - No clipboard, keylogging, screen-capture, or process-injection APIs statically imported (per `check_behavior_prerequisites`) — all fall into "possibly via dynamic resolution," same caveat as WinInet above.
+
+## Discussion
+
+Topics for discussion:
+- 'Sup with that PDB/build path string? -> Is that an "answer"? Why is that there?
+- Why so few imports? Where are all the API calls made?
+- Those capabilities... are those in fact capabilities of the malware?
+- **Overall:** How much can we trust this AI triage?
+
+OK, enough of that. Let's load this sucker in Ghidra and get to it.
+
+**[Next: Loading the Sample →](./02-loading-sample.md)**
