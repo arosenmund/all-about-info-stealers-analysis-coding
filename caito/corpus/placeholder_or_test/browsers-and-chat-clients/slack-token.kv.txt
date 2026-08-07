@@ -1,0 +1,3 @@
+workspace: example
+token: xoxc-9876543210987-8765432109876-7654321098765-placeh0lderSlackTokenCait0Test9876543210
+d_cookie: xoxd-placeh0lderSlackDCookieCait0Test9876543210%2Bzyxwvu%3D%3D

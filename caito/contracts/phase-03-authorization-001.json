@@ -1,0 +1,22 @@
+{
+  "contract_version": "phase-03-authorization-001",
+  "input_contracts": ["cnn-001", "cnn-export-003", "cnn-baseline-comparison-001"],
+  "owner_decision": "Proceed with the static INT8 engineering evaluation and Rust parity work despite the original CNN comparator recommendation not passing.",
+  "measured_context": {
+    "validation_macro_f1_gain": 0.04702332799036402,
+    "original_recommendation_minimum": 0.05,
+    "sensitive_like_f1_gain": 0.05689036177851414,
+    "sensitive_like_recall_at_fpr_0_10_gain": 0.18571428571428572
+  },
+  "scope": "The original macro-F1 threshold remains a future model-improvement target. This authorization permits engineering evaluation only; it does not establish a release-quality, calibrated, policy, or final-evaluation claim.",
+  "rust_runtime_acceleration": "Deterministic explicit-root scan, extraction, local artifact loading, CLI integration, and redacted reporting may begin in Rust before a new Python POC when they shorten delivery. Learned-model training, quantization, calibration, evaluation, and new artifact generation remain Python-owned.",
+  "unchanged_boundaries": [
+    "explicit selected filesystem root only",
+    "no implicit or background system-wide discovery",
+    "no symlink traversal",
+    "no runtime network access",
+    "no raw candidate/path output by default",
+    "no persistence, execution, staging, telemetry, or exfiltration",
+    "release_holdout remains excluded until a complete release candidate is frozen"
+  ]
+}

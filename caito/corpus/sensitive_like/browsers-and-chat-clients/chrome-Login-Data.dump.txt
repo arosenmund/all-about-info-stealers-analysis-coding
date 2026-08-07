@@ -1,0 +1,26 @@
+# "Login Data" is a SQLite DB:
+#   C:\Users\jdoe\AppData\Local\Google\Chrome\User Data\Default\Login Data
+# The password_value column is AES-GCM ciphertext (v10/v11 prefix), decryptable
+# with the key from Local State (see chrome-Local-State.json).
+#
+# Below: `sqlite3 "Login Data" ".dump logins"` style view, then what an
+# infostealer outputs AFTER decrypting password_value.
+
+sqlite> SELECT origin_url, username_value, hex(password_value) FROM logins;
+origin_url|username_value|password_value(hex)
+https://portal.example.com/login|jdoe@example.com|763130 A1B2C3D4E5F6 0718293A4B5C6D7E8F90 FAKEGCMct
+https://git.example.com/login|jdoe|763130 0F1E2D3C4B5A 69788796A5B4C3D2E1F0 FAKEGCMct
+https://admin.example.org/|admin|763131 9F8E7D6C5B4A 39281706F5E4D3C2B1A0 FAKEGCMct
+
+# ---- decrypted (what lands in the stealer's exfil report) ----
+URL: https://portal.example.com/login
+USER: jdoe@example.com
+PASS: P0rtal-L0gin-2026!
+
+URL: https://git.example.com/login
+USER: jdoe
+PASS: G1t-Acc3ss-2026
+
+URL: https://admin.example.org/
+USER: admin
+PASS: Adm1n-Panel-2026!

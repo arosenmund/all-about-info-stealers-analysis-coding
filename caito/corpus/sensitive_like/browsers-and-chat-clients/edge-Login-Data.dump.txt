@@ -1,0 +1,22 @@
+# Microsoft Edge (Chromium) — identical format to Chrome, different path:
+#   C:\Users\asmith\AppData\Local\Microsoft\Edge\User Data\Default\Login Data
+# Key wrapped in ...\Edge\User Data\Local State.
+
+sqlite> SELECT origin_url, username_value, hex(password_value) FROM logins;
+origin_url|username_value|password_value(hex)
+https://portal.contoso.com/|asmith@contoso.com|763131 2B3C4D5E6F70 8192A3B4C5D6E7F8 FAKEGCMct
+https://jira.contoso.com/login|asmith|763131 3C4D5E6F7081 92A3B4C5D6E7F809 FAKEGCMct
+https://vpn.contoso.com/|asmith|763130 4D5E6F708192 A3B4C5D6E7F80912 FAKEGCMct
+
+# ---- decrypted (stealer exfil view) ----
+URL: https://portal.contoso.com/
+USER: asmith@contoso.com
+PASS: P0rtal-Contoso-2026!
+
+URL: https://jira.contoso.com/login
+USER: asmith
+PASS: J1ra-Contoso-2026
+
+URL: https://vpn.contoso.com/
+USER: asmith
+PASS: Vpn-Contoso-Rem0te-2026!

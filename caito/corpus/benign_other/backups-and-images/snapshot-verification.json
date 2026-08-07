@@ -1,0 +1,6 @@
+{
+  "image_reference": "docs-demo-image-2026-08",
+  "verification_digest": "sha256:8f1d28bceda5f4a900a6e4c811f31f5c3279db608f27a401e35c9d6b28aa540c",
+  "manifest_url": "https://releases.example.invalid/images/demo",
+  "restore_mode": "read-only-training-preview"
+}

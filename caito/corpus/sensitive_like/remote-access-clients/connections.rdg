@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Remote Desktop Connection Manager (RDCMan). Default:
+     C:\Users\jdoe\AppData\Local\Microsoft\Remote Desktop Connection Manager\RDCMan.settings
+     or a saved .rdg. logonCredentials/password is a DPAPI blob unless the file
+     was saved with "Store password as clear text" (then it is plaintext). -->
+<RDCMan programVersion="2.90" schemaVersion="3">
+  <file>
+    <credentialsProfiles />
+    <properties>
+      <expanded>True</expanded>
+      <name>Production</name>
+    </properties>
+    <server>
+      <properties>
+        <displayName>fileserver01</displayName>
+        <name>fileserver01.example.com</name>
+      </properties>
+      <logonCredentials inherit="None">
+        <profileName scope="Local">Custom</profileName>
+        <userName>svc_backup</userName>
+        <domain>EXAMPLE</domain>
+        <password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAApME8f2s9SU6ci39uXUw7KgAAAAACAAAAAAAQZgAAAAEAACAAAAA15QfakeDPAPIblobExample0123456789abcdef</password>
+      </logonCredentials>
+    </server>
+    <server>
+      <properties>
+        <displayName>dc01</displayName>
+        <name>dc01.example.com</name>
+      </properties>
+      <logonCredentials inherit="None">
+        <profileName scope="Local">Custom</profileName>
+        <userName>Administrator</userName>
+        <domain>EXAMPLE</domain>
+        <password storeAsClearText="true">D0mainAdm1n-2026!</password>
+      </logonCredentials>
+    </server>
+  </file>
+</RDCMan>

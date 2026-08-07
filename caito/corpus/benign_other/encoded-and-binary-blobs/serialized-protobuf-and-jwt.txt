@@ -1,0 +1,16 @@
+# Encoded structured data that pattern-matches tokens but carries no secret.
+
+# --- base64 protobuf (a serialized message, dot-separated like nothing secret) ---
+# echo 'CgVBbGV4EhIK/0NvbnRvc28SB3NlYXR0bGUYKg==' | base64 -d | protoc --decode_raw
+# -> 1: "Alex"  2 { 1: "Contoso"  2: "seattle"  3: 42 }   (a profile record)
+CgVBbGV4EhIK/0NvbnRvc28SB3NlYXR0bGUYKg==
+
+# --- a JWT that is NOT a bearer credential: an UNSIGNED (alg:none) or already-
+# EXPIRED, publicly-decodable token. header.payload are just base64url JSON. ---
+eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJkZW1vIiwibmFtZSI6IkV4YW1wbGUiLCJpYXQiOjE1MTYyMzkwMjIsImV4cCI6MTUxNjIzOTAyMn0.
+# decodes to: header {"alg":"none","typ":"JWT"}  payload {"sub":"demo","exp":1516239022 (year 2018, long expired)}
+# alg=none + empty signature -> not a usable credential. The base64url dots are
+# the JWT SHAPE, but there's no valid signing secret behind it.
+
+# --- MessagePack / CBOR blob (config cache) ---
+82a46e616d65a54578616d706c65a26964cd0929

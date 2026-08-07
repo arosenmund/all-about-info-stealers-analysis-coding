@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- C:\Users\jdoe\AppData\Roaming\FileZilla\sitemanager.xml
+     (recentservers.xml has the same shape). Pass encoding="base64" means the
+     password is JUST base64 — no encryption at all.
+     'RnRwLUQzcGxveS0yMDI2IQ==' -> 'Ftp-D3ploy-2026!' -->
+<FileZilla3 version="3.66.4" platform="windows">
+  <Servers>
+    <Server>
+      <Host>sftp.example.com</Host>
+      <Port>22</Port>
+      <Protocol>1</Protocol>
+      <Type>0</Type>
+      <User>deploy</User>
+      <Pass encoding="base64">RnRwLUQzcGxveS0yMDI2IQ==</Pass>
+      <Logontype>1</Logontype>
+      <Name>Prod SFTP</Name>
+    </Server>
+    <Server>
+      <Host>203.0.113.60</Host>
+      <Port>21</Port>
+      <Protocol>0</Protocol>
+      <Type>0</Type>
+      <User>backup</User>
+      <Pass encoding="base64">QmFja3VwLUZUUC0yMDI2</Pass>
+      <Logontype>1</Logontype>
+      <Name>Backup FTP</Name>
+    </Server>
+  </Servers>
+</FileZilla3>

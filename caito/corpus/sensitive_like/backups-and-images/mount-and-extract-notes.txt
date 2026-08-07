@@ -1,0 +1,33 @@
+Backups/images are containers — mount, then loot with the techniques from every
+other folder in this dataset. Notes on the common formats:
+
+.vhd / .vhdx  (Hyper-V / Windows Backup disks)
+  PS> Mount-VHD -Path \\fileserver01.example.com\backups\DC01-full.vhdx -ReadOnly
+  Then read F:\Windows\System32\config\{SAM,SECURITY,SYSTEM}  -> secretsdump.
+  Domain controller image -> F:\Windows\NTDS\ntds.dit + SYSTEM = full domain
+  hash dump (DCSync-equivalent, offline).
+
+.vmdk  (VMware)
+  7-Zip can open a .vmdk directly, or `qemu-nbd` / vmware-mount to a drive.
+
+.wim / .esd  (Windows imaging)
+  PS> Mount-WindowsImage -ImagePath golden-image-2026Q2.wim -Index 1 -Path C:\mnt -ReadOnly
+  Golden images frequently carry an unattend.xml with a baked local-admin
+  password (see ../deployment-and-gpo-artifacts/unattend.xml).
+
+.bak  (SQL Server backup)
+  RESTORE into a throwaway instance, then read sys.sql_logins password hashes,
+  linked-server credentials, and any secrets stored in app tables.
+
+.pst / .ost  (Outlook stores)
+  Full of "your new password is..." mails, VPN setup instructions, and saved
+  web passwords users emailed themselves.
+
+VSS shadow copies
+  vssadmin list shadows  ->  copy out of
+  \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopyN\... to reach locked live files
+  (hives, ntds.dit) without shutting anything down.
+
+Why this category matters: the source file might be locked or ACL'd to SYSTEM,
+but its backup often sits on an over-shared \\server\backups readable by any
+domain user.

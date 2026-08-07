@@ -1,0 +1,13 @@
+# "IT password tracker" — a real .xlsx is a zip of XML; this is its sheet
+# exported to CSV, which is what an analyst usually ends up reading. Common on
+# Desktops, in \\share\IT, and OneDrive\Documents.
+System,URL / Host,Username,Password,Notes
+Domain Admin,dc02.contoso.com,CONTOSO\Administrator,D0mainAdm1n-Contoso-2026!,break-glass
+ESXi host 1,203.0.113.20,root,Esxi-R00t-2026!,vCenter joined
+ESXi host 2,203.0.113.21,root,Esxi-R00t-2026!,same as host 1 (!)
+Firewall,192.0.2.1,admin,F1rewall-Adm1n-2026,SSH + web UI
+Switch stack,192.0.2.2,cisco,C1sco-Sw1tch-2026,enable: En@ble-2026
+SAN mgmt,203.0.113.30,storageadmin,S@N-Mgmt-2026!,
+Backup console,appsrv02.contoso.com,svc_backup2,B@ckup-Contoso-2026,Veeam
+Guest WiFi,-,-,Gu3st-WiFi-Contoso-2026,rotates quarterly (never does)
+SMTP relay,smtp.contoso.com,relay,SmtpR3lay-2026,port 587

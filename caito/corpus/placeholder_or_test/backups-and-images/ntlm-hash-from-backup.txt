@@ -1,0 +1,1 @@
+CONTOSO\Administrator:500:aad3b435b51404eeaad3b435b51404ee:9f0e8d7c6b5a49382716f5e4d3c2b1a0:::

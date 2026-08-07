@@ -1,0 +1,27 @@
+# Build metadata and HTTP cache validators. High-entropy hashes that ship in
+# every deployed app and HTTP response. Public by definition.
+
+# --- build-info.json baked into a release ---
+{
+  "version": "1.4.2",
+  "gitCommit": "3f7a1c9e2b4d6f8091a2b3c4d5e6f708192a3b4c",
+  "gitTag": "v1.4.2",
+  "buildId": "20260622.3",
+  "buildHash": "a1b2c3d4e5f60718293a4b5c6d7e8f90",
+  "builtAt": "2026-06-22T09:00:00Z"
+}
+
+# --- webpack/vite asset fingerprints (cache-busting) ---
+<script src="/static/js/main.8f2a1c7d.js"></script>
+<link href="/static/css/app.3e5b6094.css" rel="stylesheet">
+{ "main.js": "main.8f2a1c7d.js", "app.css": "app.3e5b6094.css" }   // asset-manifest.json
+
+# --- HTTP ETags / cache validators (response headers) ---
+ETag: "9f86d081884c7d659a2feaa0c55ad015"
+ETag: W/"1a2b3c4d5e6f7081-1793000000"
+Last-Modified: Sun, 22 Jun 2026 09:00:00 GMT
+If-None-Match: "9f86d081884c7d659a2feaa0c55ad015"
+
+# --- Windows file/assembly versions & PE debug GUID (also decoy-ish) ---
+FileVersion: 10.0.19041.3803   ProductVersion: 10.0.19041.3803
+RSDS debug GUID: {b4c5d6e7-f809-1223-3c4d-5e6f70819293}  age: 1

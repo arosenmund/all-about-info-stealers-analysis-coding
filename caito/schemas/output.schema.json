@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybrid-edge-classifier.local/schemas/output-001.json",
+  "title": "Redacted classifier output",
+  "oneOf": [
+    {"$ref": "#/$defs/validated"},
+    {"$ref": "#/$defs/classified"},
+    {"$ref": "#/$defs/rejected"}
+  ],
+  "$defs": {
+    "recordId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "primaryClass": {
+      "enum": ["sensitive_like", "placeholder_or_test", "benign_other"]
+    },
+    "validated": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "status",
+        "record_id",
+        "candidate_byte_length",
+        "context_present",
+        "preprocessing_version"
+      ],
+      "properties": {
+        "schema_version": {"const": "output-001"},
+        "status": {"const": "validated"},
+        "record_id": {"$ref": "#/$defs/recordId"},
+        "candidate_byte_length": {"type": "integer", "minimum": 0},
+        "context_present": {"type": "boolean"},
+        "preprocessing_version": {"const": "preprocess-001"}
+      }
+    },
+    "classified": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "status",
+        "record_id",
+        "candidate_byte_length",
+        "context_present",
+        "decision",
+        "artifacts"
+      ],
+      "properties": {
+        "schema_version": {"const": "output-001"},
+        "status": {"const": "classified"},
+        "record_id": {"$ref": "#/$defs/recordId"},
+        "candidate_byte_length": {"type": "integer", "minimum": 0},
+        "context_present": {"type": "boolean"},
+        "candidate_fingerprint": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["algorithm", "value"],
+          "properties": {
+            "algorithm": {"const": "hmac-sha256"},
+            "value": {"type": "string", "minLength": 1, "maxLength": 128}
+          }
+        },
+        "decision": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["model_top_class", "class", "confidence", "abstained", "reason_codes", "policy_version"],
+          "properties": {
+            "model_top_class": {"$ref": "#/$defs/primaryClass"},
+            "class": {"enum": ["sensitive_like", "placeholder_or_test", "benign_other", "abstain"]},
+            "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+            "abstained": {"type": "boolean"},
+            "reason_codes": {"type": "array", "maxItems": 16, "items": {"type": "string", "maxLength": 64}},
+            "policy_version": {"type": "string", "minLength": 1, "maxLength": 64}
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "cnn": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["top_class", "probability"],
+              "properties": {
+                "top_class": {"$ref": "#/$defs/primaryClass"},
+                "probability": {"type": "number", "minimum": 0, "maximum": 1}
+              }
+            },
+            "retrieval": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["top_class", "agreement", "prototype_ids"],
+              "properties": {
+                "top_class": {"$ref": "#/$defs/primaryClass"},
+                "agreement": {"type": "number", "minimum": 0, "maximum": 1},
+                "prototype_ids": {
+                  "type": "array",
+                  "maxItems": 16,
+                  "items": {"type": "string", "minLength": 1, "maxLength": 128}
+                }
+              }
+            },
+            "features": {"type": "array", "items": {"type": "string", "maxLength": 64}}
+          }
+        },
+        "artifacts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["bundle_version", "preprocessing_version"],
+          "properties": {
+            "bundle_version": {"type": "string", "minLength": 1, "maxLength": 128},
+            "preprocessing_version": {"type": "string", "minLength": 1, "maxLength": 128},
+            "cnn_version": {"type": "string", "maxLength": 128},
+            "encoder_id": {"type": "string", "maxLength": 256},
+            "prototype_version": {"type": "string", "maxLength": 128},
+            "fusion_version": {"type": "string", "maxLength": 128}
+          }
+        }
+      }
+    },
+    "rejected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "status", "error"],
+      "properties": {
+        "schema_version": {"const": "output-001"},
+        "status": {"const": "rejected"},
+        "record_id": {"$ref": "#/$defs/recordId"},
+        "error": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code", "message"],
+          "properties": {
+            "code": {"enum": ["invalid_json", "invalid_utf8", "invalid_schema", "invalid_provenance", "invalid_unicode", "input_limit_exceeded"]},
+            "message": {"type": "string", "minLength": 1, "maxLength": 256}
+          }
+        }
+      }
+    }
+  }
+}

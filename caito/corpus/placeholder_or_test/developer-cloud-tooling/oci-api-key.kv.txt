@@ -1,0 +1,5 @@
+user: ocid1.user.oc1..fakeaaaaaaaaexampleuserocid0123456789abcdefghijklmnopqrstuvwxyz
+tenancy: ocid1.tenancy.oc1..fakeaaaaaaaaexampletenancyocid0123456789abcdefghijklmnopqrstuv
+fingerprint: 20:3b:97:13:55:1c:5b:0d:d3:37:d8:e6:6a:1f:4c:9e
+key_file: C:\Users\mwong\.oci\oci_api_key.pem
+pass_phrase: Oci-K3y-Passphrase-2026

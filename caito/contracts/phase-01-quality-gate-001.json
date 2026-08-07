@@ -1,0 +1,40 @@
+{
+  "contract_version": "phase-01-quality-gate-001",
+  "purpose": "Predeclare Phase 1 corpus and model evidence requirements before CNN, calibration, policy, or scanner decisions.",
+  "evaluation_split_contract": "split-002",
+  "selection_protocol": {
+    "training": "Fit parameters on train only.",
+    "model_selection": "Choose one predeclared configuration using validation only.",
+    "calibration": "Fit calibration parameters on calibration only after model selection.",
+    "test": "Use once for final confirmation; never tune corpus, configuration, calibration, or policy against test results."
+  },
+  "data_readiness": {
+    "minimum_documents_per_primary_label": 30,
+    "minimum_isolation_components_per_primary_label": 10,
+    "minimum_artifact_families_per_primary_label": 8,
+    "minimum_records_per_primary_label_per_heldout_split": 30,
+    "fixed_fpr_one_percent_minimum_one_vs_rest_negatives": 100,
+    "note": "A one-percent empirical FPR claim is not evaluable for a class/split with fewer than 100 one-vs-rest negatives."
+  },
+  "baseline_selection_targets": {
+    "validation_macro_f1_minimum": 0.65,
+    "validation_per_class_f1_minimum": {
+      "sensitive_like": 0.7,
+      "placeholder_or_test": 0.55,
+      "benign_other": 0.55
+    },
+    "sensitive_like_recall_at_empirical_fpr_minimum": {
+      "0.10": 0.5,
+      "0.01": 0.2
+    },
+    "fixed_fpr_requirement": "Report the actual negative support. Mark the one-percent target not evaluable rather than interpreting a coarser empirical point as one percent."
+  },
+  "later_calibration_and_policy_targets": {
+    "expected_calibration_error_maximum": 0.08,
+    "non_abstained_coverage_minimum": 0.7,
+    "non_abstained_validation_macro_f1_minimum": 0.8,
+    "rule": "Evaluate calibration and abstention only after their separate Python POCs exist; they are not silently inferred from uncalibrated baseline scores."
+  },
+  "phase_2_entry": "Targets must be recorded and the leakage-safe corpus/split must pass. Baseline target failure is evidence for data or model work, not permission to tune on test or emit scanner decisions.",
+  "scanner_decision_entry": "All applicable data, selection, calibration, policy, privacy, and later performance targets must pass on the final held-out evaluation."
+}

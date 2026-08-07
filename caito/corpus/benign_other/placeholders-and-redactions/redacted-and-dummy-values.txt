@@ -1,0 +1,24 @@
+# Already-redacted output and default/dummy values. Credential-shaped slots,
+# but the sensitive bytes are gone or were never real.
+
+# --- redacted log / support bundle ---
+2026-06-22T10:14:08Z  db connect user=app_user password=**********
+Authorization: Bearer [REDACTED]
+aws_secret_access_key = ****************************************
+"client_secret": "‹redacted›",
+X-Api-Key: ●●●●●●●●●●●●●●●●
+
+# --- all-zeros / all-same "empty" values (unset or reset state) ---
+NTLM (no password set): 31d6cfe0d16ae931b73c59d7e0c089c0   <- the KNOWN hash of an EMPTY string
+LM (disabled):          aad3b435b51404eeaad3b435b51404ee   <- the "no LM hash" sentinel, on every modern box
+GUID (null):            00000000-0000-0000-0000-000000000000
+key:                    0000000000000000000000000000000000000000000000000000000000000000
+token:                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+# --- obvious test/dummy creds (unit tests, demos) ---
+username=test password=test
+user: admin  pass: password123    # in test fixtures / seed data
+apiKey: "test_key_do_not_use"
+# Note: 31d6cfe0... and aad3b435... appear in REAL secretsdump output too — there
+# they mean "this account has no/blank password," which is a finding of a
+# different kind. Same bytes, opposite meaning depending on context.

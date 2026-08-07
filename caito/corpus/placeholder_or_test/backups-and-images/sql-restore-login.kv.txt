@@ -1,0 +1,4 @@
+source: payroll.bak
+server: sqldb-payroll01.example.com
+login: sa
+password: Sq1DB-Payroll-P0rtal-2026$

@@ -1,0 +1,6 @@
+{
+  "connection_kind": "documentation-sample",
+  "host_alias": "training-desktop.example.invalid",
+  "certificate_pin": "sha256:5d24ff1f80a6a3dc49631f89f5a6c3c995c823e70046a244a9df68666c5b89ca",
+  "launch_note": "opens-no-session-in-reference-mode"
+}

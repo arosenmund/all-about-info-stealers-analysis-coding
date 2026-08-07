@@ -1,0 +1,24 @@
+{
+  "extraction_contract_version": "extract-002",
+  "supersedes": "extract-001",
+  "input_contracts": ["crawl-001", "corpus-001"],
+  "output": "in-memory candidate/context records; not input-001",
+  "candidate_rules_in_order": [
+    "For one-line JSON objects, emit each non-empty top-level string field in source order.",
+    "For a multiline JSON string property, emit a quoted JSON string key and quoted JSON string value with an optional trailing comma.",
+    "Otherwise, emit one non-empty identifier-like key=value or key:value assignment.",
+    "Otherwise, emit one non-empty relaxed key:value mapping whose key contains only ASCII letters, digits, underscore, at-sign, space, period, backslash, backtick, or hyphen; one matching outer backtick pair is removed from the key.",
+    "For non-JSON mapping values, trim whitespace, remove one matching outer quote pair, and remove a whitespace-delimited trailing # or // comment outside quotes."
+  ],
+  "json_value_types": ["string"],
+  "identifier_assignment_key_pattern": "[A-Za-z_][A-Za-z0-9_.-]*",
+  "relaxed_mapping_key_pattern": "[A-Za-z0-9_@ .\\\\`-]{1,128}",
+  "context": {
+    "before_lines": 2,
+    "after_lines": 2,
+    "line_number_base": 1
+  },
+  "unmatched_lines": "ignore",
+  "folder_label_rule": "Corpus annotations are carried into extraction results for training/evaluation only; they are never target-scan predictions.",
+  "future_handoff": "classifier-input-002 maps extracted records to canonical preprocessing without changing input-001."
+}

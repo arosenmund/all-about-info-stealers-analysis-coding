@@ -1,0 +1,14 @@
+# Log lines full of UUIDs: trace / correlation / request / span IDs. They look
+# like session tokens but are diagnostic identifiers, safe to log and share.
+
+2026-06-22T10:14:08.221Z INFO  [req=7f3a1c9e-2b4d-6f80-91a2-b3c4d5e6f708] GET /api/orders 200 42ms
+2026-06-22T10:14:08.402Z INFO  [req=8c2d4e6f-8091-a2b3-c4d5-e6f708192a3b] correlationId=1a2b3c4d-5e6f-7081-92a3-b4c5d6e7f809 user=asmith
+2026-06-22T10:14:09.117Z DEBUG traceId=4bf92f3577b34da6a3ce929d0e0e4736 spanId=00f067aa0ba902b7 sampled=1   ; W3C traceparent
+2026-06-22T10:14:09.550Z INFO  x-ms-request-id: 9f8e7d6c-5b4a-3928-1706-f5e4d3c2b1a0
+2026-06-22T10:14:09.998Z INFO  x-amz-request-id: 8091A2B3C4D5E6F7  x-amz-id-2: base64LikeButPublicTraceIdABCDEF0123456789==
+
+# Idempotency keys and event IDs — same idea:
+Idempotency-Key: 6f708192-a3b4-c5d6-e7f8-091223344556
+Stripe-Event:    evt_1FakeEventId0123456789abcdef
+
+# All of these are printed to stdout/log aggregators on purpose. Not credentials.

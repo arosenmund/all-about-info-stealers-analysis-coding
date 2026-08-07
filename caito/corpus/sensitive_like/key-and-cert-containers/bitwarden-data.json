@@ -1,0 +1,34 @@
+{
+  "//": "Bitwarden desktop vault cache: C:\\Users\\jdoe\\AppData\\Roaming\\Bitwarden\\data.json",
+  "//2": "Vault items are AES-encrypted; the '2.<iv>|<ct>|<mac>' EncString format is decryptable with the master-key-derived stretched key. The account email + KDF iterations are cleartext (useful for offline attack).",
+  "global": { "installedVersion": "2024.6.2" },
+  "activeUserId": "a1b2c3d4-5e6f-7081-92a3-b4c5d6e7f809",
+  "a1b2c3d4-5e6f-7081-92a3-b4c5d6e7f809": {
+    "profile": {
+      "email": "jdoe@example.com",
+      "kdfIterations": 600000,
+      "kdfType": 0,
+      "userId": "a1b2c3d4-5e6f-7081-92a3-b4c5d6e7f809"
+    },
+    "keys": {
+      "cryptoSymmetricKey": {
+        "encrypted": "2.fakeIV0123456789abcdef==|fakeCipherTextABCDEF0123456789ghijklmnopqrstuvwxyz==|fakeMAC0123456789abcdefABCDEF=="
+      }
+    },
+    "data": {
+      "ciphers": {
+        "encrypted": {
+          "c1a2b3c4-...": {
+            "type": 1,
+            "name": "2.fakeIVname==|fakeEncNameABCDEF==|fakeMAC==",
+            "login": {
+              "username": "2.fakeIVuser==|fakeEncUserABCDEF==|fakeMAC==",
+              "password": "2.fakeIVpass==|fakeEncPassABCDEF0123456789==|fakeMAC==",
+              "uris": [ { "uri": "2.fakeIVuri==|fakeEncUriABCDEF==|fakeMAC==" } ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

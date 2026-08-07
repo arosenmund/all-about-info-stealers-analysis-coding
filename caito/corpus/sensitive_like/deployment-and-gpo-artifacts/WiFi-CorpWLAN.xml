@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- C:\ProgramData\Microsoft\Wlansvc\Profiles\Interfaces\{GUID}\{GUID}.xml
+     keyMaterial is DPAPI-machine protected on disk. Reveal live with:
+       netsh wlan show profile name="CorpWLAN" key=clear
+     which prints the "Key Content" line shown at the bottom. -->
+<WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
+  <name>CorpWLAN</name>
+  <SSIDConfig>
+    <SSID>
+      <hex>436F72705741414E</hex>
+      <name>CorpWLAN</name>
+    </SSID>
+  </SSIDConfig>
+  <connectionType>ESS</connectionType>
+  <connectionMode>auto</connectionMode>
+  <MSM>
+    <security>
+      <authEncryption>
+        <authentication>WPA2PSK</authentication>
+        <encryption>AES</encryption>
+        <useOneX>false</useOneX>
+      </authEncryption>
+      <sharedKey>
+        <keyType>passPhrase</keyType>
+        <protected>true</protected>
+        <keyMaterial>01000000D08C9DDF0115D1118C7A00C04FC297EB01000000A4C9E8F12B3D4E5A9C8B7F6E5D4C3B2A00000000000200000000001066000000010000</keyMaterial>
+      </sharedKey>
+    </security>
+  </MSM>
+</WLANProfile>
+
+<!--
+C:\> netsh wlan show profile name="CorpWLAN" key=clear
+Security settings
+    Authentication         : WPA2-Personal
+    Cipher                 : CCMP
+    Key Content            : C0rp-WiFi-PSK-2026!
+-->

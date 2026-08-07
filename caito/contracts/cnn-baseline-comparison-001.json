@@ -1,0 +1,30 @@
+{
+  "contract_version": "cnn-baseline-comparison-001",
+  "purpose": "Compare the frozen cnn-001 byte CNN against the previously validation-selected compact n-gram configuration on the renewed development allocation without using historical or release-holdout data.",
+  "input_contracts": [
+    "cnn-001",
+    "baseline-003",
+    "baseline-selection-001",
+    "classifier-input-002",
+    "preprocess-001",
+    "evaluation-allocation-001"
+  ],
+  "baseline_comparator": {
+    "origin": "The fixed winner configuration from baseline-selection-001; this comparison does not reselect or retune it.",
+    "feature_dimension": 1024,
+    "ngram_sizes": [3, 4, 5],
+    "epochs": 30,
+    "learning_rate": 0.35,
+    "learning_rate_decay": 0.02,
+    "l2_regularization": 0.0001
+  },
+  "data_boundary": "Only train, validation, and calibration candidate-bearing inputs are supplied to either model. historical_test and release_holdout remain outside preprocessing, fitting, scoring, and comparison.",
+  "training": "Fit both fixed configurations on train only. Neither model, configuration, threshold, or policy is selected by this comparison.",
+  "evaluation": {
+    "splits": ["validation", "calibration"],
+    "metrics": ["macro_f1", "sensitive_like_f1", "sensitive_like_recall_at_empirical_fpr_0_10"],
+    "proceed_to_int8_recommendation": "Validation macro-F1 gain at least 0.05 and no sensitive_like F1 regression. Calibration is aggregate confirmation only."
+  },
+  "retention": "in-memory only; report aggregate metrics and deltas without candidate text, contexts, paths, record IDs, predictions, a model artifact, or a scanner decision",
+  "exclusions": ["release-holdout evaluation", "historical-test evaluation", "model selection", "calibration", "policy", "network access"]
+}

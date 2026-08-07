@@ -1,0 +1,33 @@
+{
+  "contract_version": "corpus-cohorts-002",
+  "supersedes": "corpus-cohorts-001",
+  "purpose": "Create balanced, independent, lab-generated corpus cohorts that fit inside the fixed crawl-001 file budget while meeting the Phase 1 grouped-evaluation quality gate.",
+  "corpus_layout": "<explicit-root>/<primary-label>/generated-cohort-XX/cohort-01.conf",
+  "primary_labels": [
+    "sensitive_like",
+    "placeholder_or_test",
+    "benign_other"
+  ],
+  "cohort_shape": {
+    "artifact_families_per_primary_label": 8,
+    "documents_per_artifact_family": 1,
+    "assignment_candidates_per_document": 35,
+    "total_generated_documents": 24,
+    "total_generated_candidates": 840
+  },
+  "content": {
+    "source": "deterministic SHA-256-derived synthetic strings",
+    "format": "one supported key=value assignment per line",
+    "safety": "The generator does not use or emit live credentials, local collected values, filesystem paths, per-record IDs, or scanner predictions."
+  },
+  "ownership": {
+    "write_scope": "Only the contract-owned generated-cohort-XX/cohort-01.conf paths below the explicitly selected root.",
+    "idempotence": "Existing matching files are retained; mismatched files fail closed and are never overwritten.",
+    "migration": "During --write only, byte-for-byte verified corpus-cohorts-001 experimental files are removed before the 002 files are created. Any modified legacy file fails closed and is retained.",
+    "verification": "--check verifies every expected 002 file and its deterministic content."
+  },
+  "evaluation": {
+    "artifact_family_role": "Each generated-cohort-XX directory is a corpus-derived evaluation-only template proxy under split-002, never a scan-time feature.",
+    "duplicate_expectation": "Generated candidate values are unique and intentionally diverse; duplicate-001 remains the authoritative post-generation review."
+  }
+}

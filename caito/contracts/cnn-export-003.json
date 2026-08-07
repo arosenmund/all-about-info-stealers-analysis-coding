@@ -1,0 +1,38 @@
+{
+  "contract_version": "cnn-export-003",
+  "supersedes": "cnn-export-002",
+  "input_contracts": ["cnn-001", "preprocess-001", "evaluation-allocation-001"],
+  "purpose": "Export the accepted fixed FP32 CNN only after the CNN byte-buffer path has been restricted to the renewed development allocation and PyTorch-to-ONNX parity passes.",
+  "artifact": {
+    "model_file": "artifacts/cnn/cnn-fp32-003.onnx",
+    "manifest_file": "artifacts/cnn/cnn-fp32-003.manifest.json",
+    "golden_file": "artifacts/cnn/cnn-fp32-003.golden.json",
+    "manifest_required_fields": [
+      "contract_version",
+      "model_contract_version",
+      "preprocessing_version",
+      "class_order",
+      "model_sha256",
+      "input_name",
+      "input_shape",
+      "input_dtype",
+      "output_name",
+      "opset",
+      "operator_types"
+    ],
+    "input_name": "byte_ids",
+    "input_shape": ["batch", 512],
+    "input_dtype": "int64",
+    "output_name": "logits",
+    "opset": 17
+  },
+  "training_boundary": "Whole-corpus manifest and duplicate analysis establish allocation metadata. Only train, validation, and calibration inputs enter CNN canonical preprocessing, fitting, or reporting; historical_test and release_holdout candidate bytes do not.",
+  "parity": {
+    "fixtures": "committed lab-generated synthetic inputs only",
+    "pytorch_to_onnx_max_absolute_logit_drift": 0.00001,
+    "class_decisions": "identical"
+  },
+  "publication": "Write temporary files, run ONNX checker and ONNX Runtime parity, then publish all three versioned files only if none already exists. Existing artifacts are never overwritten.",
+  "release_holdout": "Excluded. The exporter trains only cnn-001 development data and compares only committed synthetic fixtures.",
+  "exclusions": ["INT8 quantization", "Rust ort", "network access", "raw candidate output", "scanner decisions"]
+}

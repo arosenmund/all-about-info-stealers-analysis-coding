@@ -1,0 +1,8 @@
+5b7eaabc62da1435424f356a61ee5cd9c7e1ad6d61a809b8295362fb325e677a  ./README.md
+5137cf02e48224d31dc0b639871591509c8bd8bd21c091608de6f8109208edfc  ./THIRD_PARTY_NOTICES.md
+bdd74ac8269e5d31ac8b5b79379409c5534bb2409da8a7de52eb970647ca8466  ./artifacts/cnn/cnn-fp32-003.manifest.json
+b9dc9f1bb933174e0a7a0537e52943dc4ea02b95093e333138da3939bfb5be35  ./artifacts/cnn/cnn-fp32-003.onnx
+3cf89fa41687a255eddc1e99fc01b57295b67e396cea5e37769e8896b8593f21  ./artifacts/cnn/cnn-int8-001.manifest.json
+4441b6553b4e4d95a58f5e55c757651cb9cdaffe1b9cfa2670338c89e19c6c40  ./artifacts/cnn/cnn-int8-001.onnx
+3e9393d7ef517ad21bec16bb62b09bae08c5864c7ef038e7ce012ffd56a2e12d  ./classifier-cli.exe
+9d66f67e25b3d06c112c8d44b879945d12f2829d6b4fa72b5ef3de6e60199ce2  ./docs/runtime-scan-001.md

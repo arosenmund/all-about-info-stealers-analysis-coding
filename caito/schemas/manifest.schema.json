@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybrid-edge-classifier.local/schemas/manifest-001.json",
+  "title": "Offline artifact bundle manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bundle_version",
+    "created_utc",
+    "class_order",
+    "preprocessing_version",
+    "data",
+    "runtime",
+    "files"
+  ],
+  "properties": {
+    "schema_version": {"const": "manifest-001"},
+    "bundle_version": {"type": "string", "minLength": 1, "maxLength": 128},
+    "created_utc": {"type": "string", "format": "date-time"},
+    "class_order": {
+      "type": "array",
+      "prefixItems": [
+        {"const": "sensitive_like"},
+        {"const": "placeholder_or_test"},
+        {"const": "benign_other"}
+      ],
+      "items": false
+    },
+    "preprocessing_version": {"const": "preprocess-001"},
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_authorizations"],
+      "properties": {
+        "allowed_authorizations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["synthetic", "generated", "revoked", "authorized"]}
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["network_access", "runtime_discovery"],
+      "properties": {
+        "network_access": {"const": false},
+        "runtime_discovery": {"const": false}
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1, "maxLength": 512, "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]*$"},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cnn": {"type": "object"},
+        "embedding": {"type": "object"},
+        "prototypes": {"type": "object"},
+        "fusion": {"type": "object"},
+        "policy": {"type": "object"}
+      }
+    }
+  }
+}
+

@@ -1,0 +1,28 @@
+C:\Users\asmith> cmdkey /list
+
+Currently stored credentials:
+
+    Target: Domain:interactive=CONTOSO\asmith
+    Type: Domain Password
+    User: CONTOSO\asmith
+
+    Target: Domain:target=TERMSRV/appsrv02.contoso.com
+    Type: Domain Password
+    User: CONTOSO\svc_deploy
+
+    Target: LegacyGeneric:target=MicrosoftAccount:user=asmith@contoso.com
+    Type: Generic
+    User: asmith@contoso.com
+
+    Target: LegacyGeneric:target=git:https://dev.azure.com/contoso
+    Type: Generic
+    User: asmith
+    Local machine persistence
+
+    Target: Domain:target=sqlprod02.contoso.com
+    Type: Domain Password
+    User: CONTOSO\svc_sql2
+
+    Target: WindowsLive:target=virtualapp/didlogical
+    Type: Generic
+    User: 09fedcba9876543210

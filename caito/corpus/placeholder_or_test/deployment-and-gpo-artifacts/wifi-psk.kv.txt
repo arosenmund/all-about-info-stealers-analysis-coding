@@ -1,0 +1,2 @@
+ssid: CorpWLAN
+psk: C0rpWLAN-Passphrase-2026#

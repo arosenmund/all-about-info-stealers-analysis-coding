@@ -1,0 +1,47 @@
+{
+  "contract_version": "phase-01-quality-gate-002",
+  "supersedes": "phase-01-quality-gate-001",
+  "purpose": "Predeclare the Phase 1 POC evidence requirements before calibration, policy, scanner decisions, or neural/runtime work.",
+  "evaluation_split_contract": "split-002",
+  "selection_protocol": {
+    "training": "Fit parameters on train only.",
+    "model_selection": "Choose one predeclared configuration using validation only.",
+    "calibration": "Fit calibration parameters on calibration only after model selection.",
+    "test": "Use once for final confirmation; never tune corpus, configuration, calibration, or policy against test results."
+  },
+  "data_readiness": {
+    "minimum_documents_per_primary_label": 30,
+    "minimum_isolation_components_per_primary_label": 10,
+    "minimum_artifact_families_per_primary_label": 8,
+    "minimum_records_per_primary_label_per_heldout_split": 30,
+    "fixed_fpr_one_percent_minimum_one_vs_rest_negatives": 100,
+    "note": "A one-percent empirical FPR point remains reportable only when its class/split has at least 100 one-vs-rest negatives."
+  },
+  "baseline_selection_targets": {
+    "validation_macro_f1_minimum": 0.65,
+    "validation_per_class_f1_minimum": {
+      "sensitive_like": 0.7,
+      "placeholder_or_test": 0.55,
+      "benign_other": 0.55
+    },
+    "sensitive_like_recall_at_empirical_fpr_minimum": {
+      "0.10": 0.5
+    },
+    "fixed_fpr_requirement": "Report actual negative support and recall at 10% and 1% empirical FPR. The 10% point is the Phase 1 POC selection gate; the 1% point is a retained operating objective, not a POC blocker."
+  },
+  "future_low_false_positive_objective": {
+    "sensitive_like_recall_at_empirical_fpr_minimum": {
+      "0.01": 0.2
+    },
+    "rule": "Keep this stricter target visible in every comparable report. Revisit it with larger independent negative support before a scanner decision or release qualification."
+  },
+  "later_calibration_and_policy_targets": {
+    "expected_calibration_error_maximum": 0.08,
+    "non_abstained_coverage_minimum": 0.7,
+    "non_abstained_validation_macro_f1_minimum": 0.8,
+    "rule": "Evaluate calibration and abstention only after their separate Python POCs exist; they are not silently inferred from uncalibrated baseline scores."
+  },
+  "phase_1_poc_entry": "The leakage-safe corpus/split and all baseline_selection_targets must pass. This permits the next Python-only Phase 1 POC, not scanner decisions.",
+  "phase_2_entry": "A completed Phase 1 POC review plus remaining owner-approved Phase 2 contracts are required. The retained 1% FPR objective remains a release/scanner-decision requirement, not permission to tune on test.",
+  "scanner_decision_entry": "All applicable data, selection, low-false-positive, calibration, policy, privacy, and later performance targets must pass on final held-out evaluation."
+}

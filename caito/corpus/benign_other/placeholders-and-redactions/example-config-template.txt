@@ -1,0 +1,24 @@
+# Template / example config (.env.example, config.sample.yml, docs snippets).
+# These sit in the exact spots real secrets live and use real key NAMES — but
+# the VALUES are placeholders. A rule keying only on "password=" fires here
+# falsely; a good rule checks whether the value is a stub.
+
+# .env.example
+DATABASE_URL=postgres://USER:PASSWORD@HOST:5432/DBNAME
+JWT_SECRET=<your-jwt-secret-here>
+AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
+STRIPE_SECRET_KEY=sk_test_XXXXXXXXXXXXXXXXXXXXXXXX
+API_TOKEN=changeme
+ADMIN_PASSWORD=CHANGE_ME_BEFORE_DEPLOY
+SMTP_PASSWORD=__REPLACE_WITH_REAL_VALUE__
+
+# config.sample.yml
+database:
+  username: <username>
+  password: "{{ vault_db_password }}"    # Ansible/Helm templating var, not a value
+redis:
+  password: ${REDIS_PASSWORD}            # shell-style interpolation, resolved at runtime
+
+# docs example (deliberately fake vendor sample):
+curl -H "Authorization: Bearer YOUR_API_KEY_HERE" https://api.example.com/v1/me

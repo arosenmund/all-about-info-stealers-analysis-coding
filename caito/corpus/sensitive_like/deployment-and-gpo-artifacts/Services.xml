@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- \\example.com\SYSVOL\...\Machine\Preferences\Services\Services.xml
+     Same MS14-025 cpassword weakness. accountName is the service logon account. -->
+<NTServices clsid="{2CFB484A-4E96-4b5d-A0B6-093D2F91E6AE}">
+  <NTService clsid="{AB6F0B67-341F-4e51-92F9-005FBFBA1A43}"
+             name="MonitoringAgent"
+             image="4"
+             changed="2026-02-11 14:22:09"
+             uid="{1A2B3C4D-5E6F-7081-92A3-B4C5D6E7F809}">
+    <Properties startupType="AUTOMATIC"
+                serviceName="MonitoringAgent"
+                serviceAction="START"
+                timeout="30"
+                accountName="EXAMPLE\svc_monitor"
+                cpassword="edBSHOwhZLTjt/QS9FeIcJ83mjWA98gw9guKOhJOdcqh+ZGMeXOsQbCpZ3xUjTLfCuNH8pG5aSVYdYw/NglVmQ"
+                interactive="0"/>
+  </NTService>
+</NTServices>

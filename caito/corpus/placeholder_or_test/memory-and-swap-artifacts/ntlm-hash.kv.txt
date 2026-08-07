@@ -1,0 +1,2 @@
+username: EXAMPLE\testuser
+nt_hash: 7a1c9e2b4d6f8091a2b3c4d5e6f70813

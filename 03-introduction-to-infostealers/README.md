@@ -27,4 +27,10 @@ Only analyze the instructor-provided sample inside the workshop range.
 
 ---
 
-[← Lab setup](../02-lab-environment-setup/) · [Workshop home](../) · **[Next: Advanced analysis →](../04-advanced-infostealer-analysis/)**
+Are you ready?! We're totally ready. I, Ryan, am totally ready. The following is for sure _not_ a picture of me moments before you all walked in the door, "finishing" my portion of the workshop. For sure.
+
+![lulz](../04-advanced-infostealer-analysis/purty_picturez/ryan-pre_workshop.png)
+
+---
+
+[← Welcome](../02-lab-environment-setup/) · [Workshop home](../) · **[Next: Advanced Infostealer Analysis →](../04-advanced-infostealer-analysis/)**

@@ -1,0 +1,16 @@
+C:\> reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+    AutoRestartShell    REG_DWORD    0x1
+    Background    REG_SZ    0 0 0
+    DefaultDomainName    REG_SZ    EXAMPLE
+    DefaultUserName    REG_SZ    kioskuser
+    AutoAdminLogon    REG_SZ    1
+    DefaultPassword    REG_SZ    Ki0sk-Autolog0n-2026
+    Shell    REG_SZ    explorer.exe
+    Userinit    REG_SZ    C:\Windows\system32\userinit.exe,
+    VMApplet    REG_SZ    SystemPropertiesPerformance.exe /pagefile
+
+:: AutoAdminLogon=1 + a plaintext DefaultPassword under Winlogon is the classic
+:: autologon credential leak (T1552.001). If DefaultPassword is absent, it may
+:: instead be stored as the LSA secret "DefaultPassword" (see secretsdump.txt).

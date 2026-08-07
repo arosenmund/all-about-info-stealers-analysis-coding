@@ -1,0 +1,18 @@
+{
+  "contract_version": "runtime-scan-paths-001",
+  "input_contracts": ["runtime-scan-001", "cnn-observation-001"],
+  "purpose": "Owner-authorized, opt-in presentation output that identifies the full canonical paths of selected-root regular files from which the scanner extracted one or more candidate values.",
+  "invocation": "classifier-cli scan ... --show-paths; the direct CLI remains aggregate-only without this flag",
+  "output": {
+    "schema_version": "runtime-scan-output-002",
+    "field": "matching_files",
+    "item": ["path", "candidates_extracted"],
+    "ordering": "deterministic lexicographic path order"
+  },
+  "boundaries": [
+    "path disclosure is limited to the explicit selected root and only files with one or more extracted candidates",
+    "no candidate values, context, fingerprints, logits, probabilities, confidence, policy decision, or source contents",
+    "no path persistence, telemetry, remote access, execution, or runtime network",
+    "presentation paths are operator-requested and must not be collected in default aggregate reports"
+  ]
+}

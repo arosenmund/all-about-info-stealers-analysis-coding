@@ -1,0 +1,6 @@
+{
+  "gpo_credential": "EXAMPLE_GPO_CREDENTIAL_TANGO",
+  "bootstrap_token": "REPLACE_BOOTSTRAP_TOKEN_UNIFORM",
+  "service_account_password": "SAMPLE_SERVICE_PASSWORD_VICTOR",
+  "annotation": "lab-provisioning-placeholder-only"
+}

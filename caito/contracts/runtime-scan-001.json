@@ -1,0 +1,24 @@
+{
+  "contract_version": "runtime-scan-001",
+  "purpose": "Accelerated Rust-runtime Stage 01/02 scanner spine for an explicitly selected local root, including an explicit Windows drive root, before learned-model inference is attached.",
+  "input": {
+    "root": "required explicit directory argument; there is no default root",
+    "eligible_files": "regular files only, including hidden/configuration/key/certificate/extensionless names when UTF-8-decodable",
+    "excluded": ["symlinks", "non-regular files", "invalid UTF-8", "unreadable files", "files beyond configured budgets"]
+  },
+  "defaults": {
+    "maximum_files": 100000,
+    "maximum_file_bytes": 262144,
+    "maximum_total_bytes": 1073741824,
+    "maximum_candidate_bytes": 4096
+  },
+  "traversal": "deterministic name-order regular-directory traversal without following symlinks; stop selection when the regular-file budget is reached",
+  "extraction": "in-memory line-oriented key=value and constrained key: value assignments with quoted-value and trailing-comma trimming; no arbitrary free-text fallback",
+  "output": "aggregate/redacted scan facts only until an explicit redacted model-observation output contract is attached",
+  "boundaries": [
+    "no implicit/background/system-default root",
+    "no persistence or content/path logging",
+    "no execution, telemetry, remote access, or runtime network",
+    "no model inference or policy decision in this contract"
+  ]
+}

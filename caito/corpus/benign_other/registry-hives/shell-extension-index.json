@@ -1,0 +1,6 @@
+{
+  "extension_name": "documentation-preview-handler",
+  "class_identifier": "a840ba8d-ef42-48d1-9e89-e18380671731",
+  "publisher_url": "https://publisher.example.invalid/extensions/docs",
+  "registration_scope": "current-user-demo-only"
+}

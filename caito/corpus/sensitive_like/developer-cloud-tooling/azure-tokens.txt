@@ -1,0 +1,37 @@
+=== C:\Users\asmith\.azure\azureProfile.json ===============================
+{
+  "subscriptions": [
+    {
+      "id": "11111111-2222-3333-4444-555555555555",
+      "name": "Contoso Production",
+      "user": { "name": "asmith@contoso.com", "type": "user" },
+      "tenantId": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+      "isDefault": true
+    }
+  ]
+}
+
+=== C:\Users\asmith\.azure\msal_token_cache.json ===========================
+# (msal_token_cache.bin on some versions — same content, MessagePack-encoded)
+{
+  "AccessToken": {
+    "aaaaaaaa...-login.windows.net-accesstoken-...": {
+      "credential_type": "AccessToken",
+      "secret": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tIiwidXBuIjoiYXNtaXRoQGNvbnRvc28uY29tIn0.FAKE_azure_jwt_sig_0123456789abcdef",
+      "realm": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+      "expires_on": "1782000000"
+    }
+  },
+  "RefreshToken": {
+    "aaaaaaaa...-refreshtoken-...": {
+      "credential_type": "RefreshToken",
+      "secret": "0.AXoAFAKErefreshTokenABCDEF0123456789ghijklmnopqrstuvwxyz-_ABCDEF"
+    }
+  }
+}
+
+=== C:\Users\asmith\.azure\accessTokens.json (legacy CLI) ==================
+[ { "tokenType": "Bearer",
+    "accessToken": "eyJ0eXAiOiJKV1Qi...FAKE...",
+    "refreshToken": "0.AXoAFAKErefresh...",
+    "_authority": "https://login.microsoftonline.com/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" } ]

@@ -1,0 +1,32 @@
+{
+  "contract_version": "release-holdout-001",
+  "purpose": "Create an independent, deterministic, lab-generated corpus cohort reserved exclusively for final release confirmation after all remaining development, model-selection, calibration, and policy choices are frozen.",
+  "corpus_layout": "<explicit-root>/<primary-label>/release-holdout-XX/cohort-01.conf",
+  "primary_labels": [
+    "sensitive_like",
+    "placeholder_or_test",
+    "benign_other"
+  ],
+  "cohort_shape": {
+    "artifact_families_per_primary_label": 8,
+    "documents_per_artifact_family": 1,
+    "assignment_candidates_per_document": 35,
+    "total_generated_documents": 24,
+    "total_generated_candidates": 840
+  },
+  "content": {
+    "source": "deterministic SHA-256-derived synthetic strings using a release-holdout-specific seed namespace",
+    "format": "one supported key=value assignment per line",
+    "safety": "The generator does not use or emit live credentials, local collected values, filesystem paths, per-record IDs, or scanner predictions."
+  },
+  "ownership": {
+    "write_scope": "Only the contract-owned release-holdout-XX/cohort-01.conf paths below the explicitly selected root.",
+    "idempotence": "Existing matching files are retained; mismatched files fail closed and are never overwritten.",
+    "verification": "--check verifies every expected release-holdout-001 document and its deterministic content."
+  },
+  "evaluation": {
+    "allocation_contract": "evaluation-allocation-001",
+    "role": "Every release-holdout family is assigned only to release_holdout. It is excluded from training, model selection, calibration, policy selection, and intermediate comparisons.",
+    "isolation": "A duplicate-connected component containing both a release-holdout group and development group fails closed. The release-holdout result may be reported only after the complete release candidate is frozen."
+  }
+}

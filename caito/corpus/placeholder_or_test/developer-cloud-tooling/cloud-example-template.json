@@ -1,0 +1,6 @@
+{
+  "api_key": "EXAMPLE_CLOUD_API_KEY_ZULU",
+  "service_token": "PLACEHOLDER_SERVICE_TOKEN_ALFA",
+  "private_key_material": "NOT_A_REAL_PRIVATE_KEY_BRAVO",
+  "annotation": "offline-cloud-tooling-fixture"
+}

@@ -1,0 +1,25 @@
+:: Where credential-bearing memory lands on disk. Any of these can be carved
+:: for secrets offline (strings, mimikatz minidump, pypykatz, volatility).
+
+C:\> dir /s /b C:\Windows\MEMORY.DMP C:\Windows\Minidump\*.dmp
+C:\Windows\MEMORY.DMP
+C:\Windows\Minidump\061426-9375-01.dmp
+
+C:\> dir C:\Users\jdoe\AppData\Local\CrashDumps
+06/14/2026  09:03 PM        48,213,504 Teams.exe.7421.dmp
+06/13/2026  02:17 PM        61,872,128 lsass.exe.5104.dmp
+06/10/2026  11:44 AM        12,058,624 mstsc.exe.3390.dmp
+
+C:\> dir /s /b C:\ProgramData\Microsoft\Windows\WER\ReportArchive
+C:\ProgramData\Microsoft\Windows\WER\ReportArchive\AppCrash_lsass.exe_9c8b7a6f\lsass.exe.5104.dmp
+C:\ProgramData\Microsoft\Windows\WER\ReportArchive\AppCrash_lsass.exe_9c8b7a6f\Report.wer
+
+C:\> dir C:\ /a:sh
+06/14/2026  08:45 AM    17,179,869,184 hiberfil.sys
+06/14/2026  08:45 AM     4,294,967,296 pagefile.sys
+06/14/2026  08:45 AM       268,435,456 swapfile.sys
+
+:: A Task Manager "Create dump file" on lsass.exe writes here by default:
+::   C:\Users\<user>\AppData\Local\Temp\lsass.DMP
+:: hiberfil.sys and pagefile.sys can contain the same plaintext/hashes long
+:: after the process exited.

@@ -1,0 +1,39 @@
+{
+  "//": "C:\\Users\\asmith\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\7k2f9x1q.default-release\\logins.json (+ key4.db)",
+  "nextId": 4,
+  "logins": [
+    {
+      "id": 1,
+      "hostname": "https://intranet.contoso.com",
+      "formSubmitURL": "https://intranet.contoso.com",
+      "usernameField": "user",
+      "passwordField": "pass",
+      "encryptedUsername": "MDIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECHfakeCONTOSO01User==",
+      "encryptedPassword": "MEIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECPfakeCONTOSO01PassBlobExample==",
+      "guid": "{2b3c4d5e-6f70-8192-a3b4-c5d6e7f80912}",
+      "encType": 1,
+      "timesUsed": 33
+    },
+    {
+      "id": 2,
+      "hostname": "https://mail.contoso.com",
+      "formSubmitURL": "https://mail.contoso.com",
+      "encryptedUsername": "MDIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECHfakeCONTOSO02User==",
+      "encryptedPassword": "MEIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECPfakeCONTOSO02PassBlob==",
+      "guid": "{3c4d5e6f-7081-92a3-b4c5-d6e7f8091223}",
+      "encType": 1,
+      "timesUsed": 8
+    },
+    {
+      "id": 3,
+      "hostname": "https://aws.amazon.com",
+      "formSubmitURL": "https://signin.aws.amazon.com",
+      "encryptedUsername": "MDIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECHfakeAWSrootUser==",
+      "encryptedPassword": "MEIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECPfakeAWSrootPassBlob==",
+      "guid": "{4d5e6f70-8192-a3b4-c5d6-e7f809122334}",
+      "encType": 1,
+      "timesUsed": 2
+    }
+  ],
+  "version": 3
+}

@@ -1,0 +1,41 @@
+{
+  "split_manifest_contract_version": "split-002",
+  "supersedes": "split-001",
+  "input_contracts": ["corpus-manifest-002", "duplicate-001"],
+  "retention": "in-memory only",
+  "splits": [
+    {"name": "train", "target_ratio": 0.7},
+    {"name": "validation", "target_ratio": 0.1},
+    {"name": "calibration", "target_ratio": 0.1},
+    {"name": "test", "target_ratio": 0.1}
+  ],
+  "allocation": {
+    "rule": "greedy-component-family-balanced-002",
+    "minimum_isolated_components_per_primary_label": 4,
+    "behavior": "Seed one deterministic component per split for each class, then allocate remaining components to the split with the lowest ratio-adjusted record count."
+  },
+  "isolation": {
+    "document_group_rule": "All records in one group-001 document are assigned to one split.",
+    "duplicate_rule": "All groups connected by any duplicate-001 exact or near cluster are assigned to one split.",
+    "artifact_family_rule": "All documents with the same primary label and corpus-derived artifact family are assigned to one split. The artifact family is an evaluation-only template proxy and never a scan-time prediction feature.",
+    "cross_label_behavior": "Fail without an assignment when a duplicate-analysis component contains more than one primary label."
+  },
+  "manifest_item_fields": [
+    "record_id",
+    "group_id",
+    "isolation_component_id",
+    "primary_label",
+    "split_name"
+  ],
+  "summary": ["record count", "group count", "component count", "per-split record/group/component/class counts"],
+  "exclusions": [
+    "candidate text",
+    "context text",
+    "candidate fingerprints",
+    "filesystem paths",
+    "persisted split files",
+    "automatic label correction",
+    "artifact-family scan-time predictions"
+  ],
+  "future_handoff": "Project, language, chronology, and explicitly annotated template rules remain later owner-approved isolation dimensions; a persisted dataset-artifact format remains separate work."
+}

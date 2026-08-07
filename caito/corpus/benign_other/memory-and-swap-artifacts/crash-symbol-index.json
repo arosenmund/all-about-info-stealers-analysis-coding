@@ -1,0 +1,6 @@
+{
+  "dump_kind": "synthetic-crash-header-only",
+  "symbol_bundle": "public-symbols-cedar-6",
+  "checksum": "sha256:4a727c45b39d56e1d90b91c2234a0d82fc8a77635fcb70f7a2e3473e4bcf1039",
+  "report_url": "https://reports.example.invalid/crash/cedar"
+}

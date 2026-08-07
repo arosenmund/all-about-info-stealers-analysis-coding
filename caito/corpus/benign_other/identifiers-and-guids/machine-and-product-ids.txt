@@ -1,0 +1,22 @@
+# Machine / install identifiers. High-entropy, GUID-shaped, but they are stable
+# device fingerprints, not secrets. Telemetry and licensing read them; knowing
+# one grants no access.
+
+C:\> reg query "HKLM\SOFTWARE\Microsoft\Cryptography" /v MachineGuid
+    MachineGuid    REG_SZ    f0e9d8c7-b6a5-4837-2615-f4e3d2c1b0a9
+
+C:\> reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v ProductId
+    ProductId      REG_SZ    00330-80000-00000-AA123
+
+C:\> reg query "HKLM\SOFTWARE\Microsoft\SQMClient" /v MachineId
+    MachineId      REG_SZ    {8F2A1C7D-3E5B-6094-81F2-C3D4E5F60718}
+
+# Cloud resource identifiers — public in ARM templates, URLs, and portals:
+Azure  subscriptionId : 55555555-6666-7777-8888-999999999999
+Azure  tenantId       : dddddddd-eeee-ffff-aaaa-bbbbbbbbbbbb
+GCP    project number : 764086051850
+AWS    account id      : 210987654321
+Datadog org_id        : 2c3d4e5f-6071-8293-a4b5-c6d7e8f90123
+
+# These NAME resources. The SECRET is the token/key you present *about* them
+# (e.g. the Azure clientSecret in ../../application-config/appsettings.Production.json).

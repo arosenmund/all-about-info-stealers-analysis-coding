@@ -1,0 +1,15 @@
+# C:\Users\asmith\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+Import-Module ActiveDirectory
+Get-ADUser -Filter * -SearchBase "OU=Service Accounts,DC=contoso,DC=com"
+$sec = ConvertTo-SecureString 'Contoso!Deploy26' -AsPlainText -Force
+$c = New-Object PSCredential('CONTOSO\svc_deploy',$sec)
+Invoke-Command -ComputerName appsrv02.contoso.com -Credential $c -ScriptBlock { hostname }
+az login -u asmith@contoso.com -p 'Az-Cli-Contoso-2026!'
+az storage account keys list -n contosostore
+cmdkey /add:sqlprod02.contoso.com /user:CONTOSO\svc_sql2 /pass:Sql2-Contoso-2026#
+git clone https://asmith:glpat-Xy9FakeGitlabPat0123456789@gitlab.contoso.com/ops/scripts.git
+curl -u admin:T0mc4t-Admin-2026! http://appsrv02.contoso.com:8080/manager/text/list
+$env:VAULT_TOKEN='hvs.FAKEvaultTokenABCDEF0123456789ghijklmno'
+vault kv get secret/prod/db
+Clear-History
+exit

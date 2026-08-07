@@ -1,0 +1,36 @@
+{
+  "contract_version": "cnn-int8-001",
+  "input_contracts": ["cnn-001", "cnn-export-003", "evaluation-allocation-001", "phase-03-authorization-001"],
+  "purpose": "Owner-authorized static QDQ S8S8 engineering POC that preserves the FP32 source artifact and measures a bounded INT8 alternative before Rust loading.",
+  "source_artifact": "artifacts/cnn/cnn-fp32-003.onnx and manifest, validated by checksum, contract version, preprocessing version, and class order",
+  "calibration": {
+    "partition": "train only",
+    "selection": "first 32 deterministic record-ID ordered examples from every primary class",
+    "method": "ONNX Runtime MinMax static calibration",
+    "format": "QDQ",
+    "activation_type": "QInt8",
+    "weight_type": "QInt8",
+    "per_channel": true
+  },
+  "evaluation": {
+    "partitions": ["validation", "calibration"],
+    "excluded": ["historical_test", "release_holdout"],
+    "metrics": ["accuracy", "macro_f1", "per-class precision/recall/f1", "average precision", "recall at empirical FPR 0.10 and 0.01", "FP32/INT8 top-class agreement", "logit drift", "model size", "session creation and inference time"],
+    "memory_note": "Memory is explicitly deferred from this compact engineering POC and remains a Phase 6 qualification measurement."
+  },
+  "engineering_gate": {
+    "validation_macro_f1_maximum_drop": 0.10,
+    "validation_per_class_f1_maximum_drop": 0.15,
+    "validation_sensitive_like_recall_at_fpr_0_10_maximum_drop": 0.15,
+    "validation_top_class_agreement_minimum": 0.80,
+    "model_size_reduction_minimum_fraction": 0.05,
+    "interpretation": "This owner-approved relaxed gate admits an INT8 artifact for Rust parity engineering only. It is not a release-quality, calibration, policy, or low-FPR approval."
+  },
+  "artifact": {
+    "model_file": "artifacts/cnn/cnn-int8-001.onnx",
+    "manifest_file": "artifacts/cnn/cnn-int8-001.manifest.json",
+    "golden_file": "artifacts/cnn/cnn-int8-001.golden.json",
+    "publication": "Use temporary files; validate graph and engineering gate; publish only if no final versioned artifact exists."
+  },
+  "boundaries": ["Python-owned quantization and measurement", "no release-holdout access", "no policy decision", "no runtime network", "aggregate/redacted outputs only"]
+}

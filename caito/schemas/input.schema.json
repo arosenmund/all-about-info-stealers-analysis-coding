@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybrid-edge-classifier.local/schemas/input-001.json",
+  "title": "Explicit classifier input record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "record_id", "candidate", "context", "source"],
+  "properties": {
+    "schema_version": {"const": "input-001"},
+    "record_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "candidate": {"type": "string", "minLength": 1, "maxLength": 4096},
+    "context": {"$ref": "#/$defs/context"},
+    "source": {"$ref": "#/$defs/source"}
+  },
+  "$defs": {
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "line", "before", "after"],
+      "properties": {
+        "key": {"type": "string", "maxLength": 128},
+        "line": {"type": "string", "maxLength": 2048},
+        "before": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {"type": "string", "maxLength": 512}
+        },
+        "after": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {"type": "string", "maxLength": 512}
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dataset_id", "dataset_version", "authorization"],
+      "properties": {
+        "dataset_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        "dataset_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        "authorization": {
+          "enum": ["synthetic", "generated", "revoked", "authorized"]
+        }
+      }
+    }
+  }
+}
+
