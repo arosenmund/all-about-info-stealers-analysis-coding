@@ -1,0 +1,14 @@
+{
+  "os_crypt": {
+    "app_bound_encrypted_key": "QVBQQjAxFAKEappBoundKeyNewerChromeExample0123456789abcdef==",
+    "encrypted_key": "RFBBUEkBAAAA0Iyd3wEV0RGMegDAT8KX6wEAAACkyehxASs9U6ci39uXUw7KgAAAAACAAAAAAAQZgAAAAEAACAAAAAxfakeAESkeyWrappedByDPAPI0123456789abcdefABCDEF=="
+  },
+  "profile": {
+    "info_cache": {
+      "Default": {
+        "name": "jdoe",
+        "user_name": "jdoe@example.com"
+      }
+    }
+  }
+}
