@@ -1,0 +1,566 @@
+<title>InfoStealer // Findings</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #0c0e0c;
+  --surface:     #111311;
+  --surface-2:   #161916;
+  --border:      #1d221d;
+  --accent:      #00e676;
+  --accent-dim:  rgba(0, 230, 118, 0.08);
+
+  --critical:    #ff5252;
+  --critical-bg: rgba(255, 82,  82,  0.09);
+  --high:        #ffab40;
+  --high-bg:     rgba(255, 171, 64,  0.09);
+  --medium:      #40c4ff;
+  --medium-bg:   rgba(64,  196, 255, 0.09);
+  --low:         #546e54;
+  --low-bg:      rgba(84,  110, 84,  0.09);
+
+  --text:        #b8d4b8;
+  --text-dim:    #6a886a;
+  --text-muted:  #3e563e;
+
+  --mono: "SF Mono", "Cascadia Code", "Consolas", "Liberation Mono", monospace;
+  --r: 3px;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+/* ── App shell ─────────────────────────────── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ── Header ────────────────────────────────── */
+#header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 11px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+#brand {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+#brand em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--text-dim);
+}
+
+#count-pill {
+  padding: 2px 9px;
+  border-radius: var(--r);
+  background: var(--accent-dim);
+  border: 1px solid rgba(0,230,118,0.18);
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+#conn-status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+#conn-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+#conn-dot.live         { background: var(--accent); animation: blink 2.4s ease-in-out infinite; }
+#conn-dot.disconnected { background: var(--critical); }
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.35; }
+}
+
+/* ── Filter bar ─────────────────────────────── */
+#filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+#filter-bar label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+#search {
+  flex: 1;
+  max-width: 440px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 5px 10px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+#search:focus       { border-color: rgba(0,230,118,0.28); }
+#search::placeholder { color: var(--text-muted); }
+
+#filter-info {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Table wrap ─────────────────────────────── */
+#table-wrap {
+  flex: 1;
+  overflow: auto;
+}
+
+#table-wrap::-webkit-scrollbar       { width: 6px; height: 6px; }
+#table-wrap::-webkit-scrollbar-track { background: var(--bg); }
+#table-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+#table-wrap::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ── Table ──────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+col.c-type    { width: 164px; }
+col.c-content { width: auto;  }
+col.c-files   { width: 268px; }
+col.c-count   { width: 68px;  }
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--surface-2);
+}
+
+th {
+  padding: 8px 14px;
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+th:hover              { color: var(--text-dim); }
+th.sort-asc::after    { content: " ↑"; color: var(--accent); }
+th.sort-desc::after   { content: " ↓"; color: var(--accent); }
+
+td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tbody tr {
+  border-left: 2px solid transparent;
+  transition: background 0.1s;
+}
+tbody tr:hover { background: var(--surface); }
+
+tbody tr.sev-critical { border-left-color: var(--critical); }
+tbody tr.sev-high     { border-left-color: var(--high);     }
+tbody tr.sev-medium   { border-left-color: var(--medium);   }
+tbody tr.sev-low      { border-left-color: var(--low);      }
+
+/* ── Type badge ─────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: var(--r);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.sev-critical .badge { background: var(--critical-bg); color: var(--critical); border: 1px solid rgba(255,82,82,0.22); }
+.sev-high     .badge { background: var(--high-bg);     color: var(--high);     border: 1px solid rgba(255,171,64,0.22); }
+.sev-medium   .badge { background: var(--medium-bg);   color: var(--medium);   border: 1px solid rgba(64,196,255,0.22); }
+.sev-low      .badge { background: var(--low-bg);      color: var(--low);      border: 1px solid rgba(84,110,84,0.22); }
+
+/* ── Content cell ───────────────────────────── */
+.content-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.content-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 1px 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, border-color 0.15s;
+  letter-spacing: 0.04em;
+}
+tr:hover  .copy-btn               { opacity: 1; }
+.copy-btn:hover                   { color: var(--accent); border-color: rgba(0,230,118,0.3); }
+.copy-btn.did-copy                { color: var(--accent); border-color: var(--accent); opacity: 1; }
+
+/* ── File chips ─────────────────────────────── */
+.file-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  font-size: 10px;
+  color: var(--text-dim);
+  max-width: 230px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Count ──────────────────────────────────── */
+.count-cell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+}
+
+/* ── Empty state ────────────────────────────── */
+#empty {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 80px 24px;
+  color: var(--text-muted);
+  text-align: center;
+}
+#empty.show { display: flex; }
+#empty .glyph { font-size: 28px; letter-spacing: -2px; opacity: 0.35; }
+#empty p { font-size: 12px; color: var(--text-muted); max-width: 340px; line-height: 1.7; }
+
+/* ── Row animation ──────────────────────────── */
+@keyframes rowIn {
+  from { opacity: 0; transform: translateY(-3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.row-enter { animation: rowIn 0.18s ease-out forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .row-enter { animation: none; }
+}
+</style>
+
+<div id="app">
+
+  <div id="header">
+    <div id="brand">InfoStealer <em>// findings</em></div>
+    <div id="count-pill">0 findings</div>
+    <div id="conn-status">
+      <div id="conn-dot"></div>
+      <span id="conn-label">connecting</span>
+    </div>
+  </div>
+
+  <div id="filter-bar">
+    <label for="search">filter</label>
+    <input id="search" type="text" placeholder="search type, content, filename…" autocomplete="off" spellcheck="false">
+    <div id="filter-info"></div>
+  </div>
+
+  <div id="table-wrap">
+    <table id="tbl">
+      <colgroup>
+        <col class="c-type">
+        <col class="c-content">
+        <col class="c-files">
+        <col class="c-count">
+      </colgroup>
+      <thead>
+        <tr>
+          <th data-col="credType">Type</th>
+          <th data-col="content">Content</th>
+          <th data-col="files">Files</th>
+          <th data-col="count">Count</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div id="empty" class="show">
+      <div class="glyph">[__]</div>
+      <p>Waiting for agent…<br>Start the agent with <code style="color:var(--accent)">-server http://localhost:8080</code> and findings will stream in here.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+'use strict';
+
+// ── Severity ───────────────────────────────────
+const SEV_MAP = {
+  'aws-access-key':          'critical',
+  'anthropic-key':           'critical',
+  'openai-key':              'critical',
+  'github-pat':              'critical',
+  'github-pat-fine-grained': 'critical',
+  'private-key':             'critical',
+  'private-key-header':      'critical',
+  'stripe-live-key':         'high',
+  'discord-token':           'high',
+  'sendgrid-key':            'high',
+  'slack-token':             'high',
+  'google-api-key':          'high',
+  'jwt':                     'medium',
+  'connection-string':       'medium',
+  'env-dump':                'medium',
+  'credential-assignment':   'medium',
+  'email':                   'low',
+  'ip':                      'low',
+};
+const sev = t => SEV_MAP[t] || 'low';
+
+// ── State ──────────────────────────────────────
+const byKey = new Map();   // "type\0content" → {finding, id}
+let   nextId = 0;
+const findings = [];       // ordered list
+
+let sortCol = null, sortDir = 1;
+let filterQ = '';
+
+// ── DOM ────────────────────────────────────────
+const tbody     = document.getElementById('tbody');
+const empty     = document.getElementById('empty');
+const countPill = document.getElementById('count-pill');
+const filterInfo = document.getElementById('filter-info');
+const connDot   = document.getElementById('conn-dot');
+const connLabel = document.getElementById('conn-label');
+
+// ── Helpers ────────────────────────────────────
+const esc  = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const trunc = (s, n) => s.length > n ? s.slice(0, n) + '…' : s;
+const base  = p => p.replace(/\\/g, '/').split('/').pop() || p;
+
+// ── Render helpers ─────────────────────────────
+function fileChipsHTML(f) {
+  const files = f.fileContaining || [];
+  const shown = files.slice(0, 3);
+  const extra = files.length - 3;
+  return shown.map(p =>
+    `<span class="chip" title="${esc(p)}">${esc(base(p))}</span>`
+  ).join('') + (extra > 0
+    ? `<span class="chip" title="${esc(files.slice(3).join('\n'))}">+${extra} more</span>`
+    : '');
+}
+
+function rowHTML(f) {
+  const s = sev(f.credType);
+  return `<tr class="sev-${s}" data-id="${f._id}">
+    <td><span class="badge">${esc(f.credType)}</span></td>
+    <td><div class="content-wrap">
+      <span class="content-text" title="${esc(f.content)}">${esc(trunc(f.content, 88))}</span>
+      <button class="copy-btn" data-v="${esc(f.content)}">copy</button>
+    </div></td>
+    <td><div class="file-chips">${fileChipsHTML(f)}</div></td>
+    <td class="count-cell">${f.count}</td>
+  </tr>`;
+}
+
+// append a single new row without touching the rest of the table
+function appendRow(f) {
+  const tmpl = document.createElement('template');
+  tmpl.innerHTML = rowHTML(f);
+  const row = tmpl.content.firstElementChild;
+  tbody.appendChild(row);
+  row.classList.add('row-enter');
+}
+
+// update only the cells that can change on an existing row
+function patchRow(f) {
+  const row = tbody.querySelector(`[data-id="${f._id}"]`);
+  if (!row) return;
+  row.querySelector('.file-chips').innerHTML = fileChipsHTML(f);
+  row.querySelector('.count-cell').textContent = f.count;
+  row.classList.remove('row-enter');
+  void row.offsetWidth;
+  row.classList.add('row-enter');
+}
+
+// full rebuild — only called on sort/filter changes (user-triggered)
+function render() {
+  const q = filterQ.toLowerCase();
+  let rows = findings.filter(f =>
+    !q
+    || f.credType.includes(q)
+    || f.content.toLowerCase().includes(q)
+    || (f.fileContaining||[]).some(p => p.toLowerCase().includes(q))
+  );
+
+  if (sortCol) {
+    rows = [...rows].sort((a, b) => {
+      const av = sortCol === 'files' ? (a.fileContaining||[]).length
+               : sortCol === 'count' ? a.count : a[sortCol];
+      const bv = sortCol === 'files' ? (b.fileContaining||[]).length
+               : sortCol === 'count' ? b.count : b[sortCol];
+      return sortDir * (typeof av === 'string' ? av.localeCompare(bv) : av - bv);
+    });
+  }
+
+  tbody.innerHTML = rows.map(rowHTML).join('');
+  empty.className = findings.length === 0 ? 'show' : '';
+  countPill.textContent = findings.length + (findings.length === 1 ? ' finding' : ' findings');
+  filterInfo.textContent = q ? `${rows.length} / ${findings.length} shown` : '';
+}
+
+// ── Ingest ─────────────────────────────────────
+// When no sort/filter is active, update the DOM incrementally.
+// When sort/filter is active, skip live DOM updates — the count pill
+// still updates; the table refreshes the next time the user changes
+// the filter or sort.
+function ingest(f) {
+  const k = f.credType + '\x00' + f.content;
+  const live = !filterQ && !sortCol;
+
+  if (byKey.has(k)) {
+    const existing = byKey.get(k);
+    existing.count += f.count;
+    const fs = new Set(existing.fileContaining);
+    (f.fileContaining||[]).forEach(p => fs.add(p));
+    existing.fileContaining = [...fs];
+    if (live) patchRow(existing);
+  } else {
+    const entry = { ...f, _id: nextId++ };
+    byKey.set(k, entry);
+    findings.push(entry);
+    if (live) { empty.className = ''; appendRow(entry); }
+  }
+
+  countPill.textContent = findings.length + (findings.length === 1 ? ' finding' : ' findings');
+}
+
+// ── Copy ───────────────────────────────────────
+tbody.addEventListener('click', e => {
+  const btn = e.target.closest('.copy-btn');
+  if (!btn) return;
+  navigator.clipboard.writeText(btn.dataset.v).then(() => {
+    btn.textContent = 'copied';
+    btn.classList.add('did-copy');
+    setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('did-copy'); }, 1600);
+  });
+});
+
+// ── Sort ───────────────────────────────────────
+document.querySelectorAll('th[data-col]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.col;
+    document.querySelectorAll('th').forEach(t => t.className = '');
+    if (sortCol === col) {
+      sortDir = -sortDir;
+    } else {
+      sortCol = col;
+      sortDir = 1;
+    }
+    th.className = sortDir === 1 ? 'sort-asc' : 'sort-desc';
+    render();
+  });
+});
+
+// ── Filter ─────────────────────────────────────
+document.getElementById('search').addEventListener('input', e => {
+  filterQ = e.target.value.trim();
+  render();
+});
+
+// ── WebSocket ──────────────────────────────────
+function connect() {
+  const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const ws = new WebSocket(`${proto}//${location.host}/ws`);
+
+  ws.onopen = () => {
+    connDot.className = 'live';
+    connLabel.textContent = 'live';
+  };
+
+  ws.onmessage = e => {
+    try { const f = JSON.parse(e.data); if (f && f.credType) ingest(f); }
+    catch (_) {}
+  };
+
+  ws.onclose = () => {
+    connDot.className = 'disconnected';
+    connLabel.textContent = 'disconnected — retrying';
+    setTimeout(connect, 3000);
+  };
+
+  ws.onerror = () => ws.close();
+}
+
+connect();
+render();
+</script>
