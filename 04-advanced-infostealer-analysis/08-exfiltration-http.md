@@ -84,3 +84,5 @@ FUN_14000c508  ── InternetOpenW → InternetConnectW → HttpOpenRequestW(PO
 ### 6. Discipline note
 
 This confirms, at the code level, a **complete HTTP(S) exfiltration capability** with a real chunked-upload protocol and matching request/response obfuscation — statically reachable and wired to the decoded C2 endpoint. What static analysis still can't tell you: whether the C2 is live, what tasking it actually returns, or whether any given run successfully exfiltrates. Confirming the endpoint is active and capturing real traffic is a **dynamic / network-analysis** step — and one to do carefully, since beaconing to a live C2 has OPSEC implications (it tips off the operator). Keep the artifact-vs-behavior line clear in the writeup.
+
+**[Next: Browser Artifacts →](./09-browser-artifacts.md)**

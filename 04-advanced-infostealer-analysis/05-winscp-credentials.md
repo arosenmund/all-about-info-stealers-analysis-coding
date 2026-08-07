@@ -53,3 +53,5 @@ if (local_158 != 0) {
 9. Check the call graph: **Window → Function Call Graph**, or use **Xrefs**: `FUN_1400423a8` ← `FUN_1400426c0` ← `FUN_14002bb44` ← `FUN_14002c1f4` ← `__scrt_common_main_seh` (the CRT-generated wrapper that calls the real `main`).
 10. That's a **fully reachable path from program entry** — unlike the lone `stealc` PDB string (which only told us about the developer's build environment), this is: real code, calling real Windows registry APIs, decoding real WinSCP password obfuscation, and writing the result to a named file. This is what elevates "credential theft" from a hypothesis to a **confirmed static capability** — the binary contains a complete, reachable implementation of WinSCP credential harvesting.
 11. One caveat worth keeping in your notes for the final report: reachable-from-main is strong evidence, but it's still static analysis. To call this a *confirmed runtime behavior* rather than a *confirmed capability*, you'd want to see it actually execute (e.g., in a sandbox with a WinSCP install present) — keep that distinction sharp when you write this up later.
+
+**[Next: FoxMail Credentials →](./06-foxmail-credentials.md)**
