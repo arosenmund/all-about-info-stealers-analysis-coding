@@ -26,7 +26,7 @@ By the end of the workshop, you should be able to:
 
 `Analyze → Model → Build → Test → Compare`
 
-Ryan leads the analysis half using LummaC2 as the case study. Aaron leads the implementation half in the OnDefend lab. The goal is understanding behavior and defensive implications, not deploying malware.
+Ryan leads the analysis half using StealC as the case study. Aaron leads the implementation half in the OnDefend lab. The goal is understanding behavior and defensive implications, not deploying malware.
 
 ## Quick check
 

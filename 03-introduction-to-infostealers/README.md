@@ -4,12 +4,12 @@
 
 ## Goal
 
-Understand the InfoStealer ecosystem and use Ghidra to identify how a representative LummaC2 sample discovers and selects target data.
+Understand the InfoStealer ecosystem and use Ghidra to identify how a representative StealC sample discovers and selects target data.
 
 ## Topics
 
 1. What an InfoStealer is and how the ecosystem has evolved.
-2. Why LummaC2 is a useful workshop case study.
+2. Why StealC is a useful workshop case study.
 3. What data modern stealers target and why.
 4. A repeatable first-pass workflow in Ghidra.
 5. Recognizing and removing analysis obstacles.
@@ -30,7 +30,7 @@ For each behavior, record:
 ## References
 
 - [Lumma Stealer analysis paper](../Resources-Ryan/Lumma_Stealer_Analysis.pdf)
-- [LummaC2 overview paper](../Resources-Ryan/LummaC2_stealer-Everything_you_need_to_know.pdf)
+- [StealC overview paper](../Resources-Ryan/StealC_stealer-Everything_you_need_to_know.pdf)
 
 Only analyze the instructor-provided sample inside the workshop range.
 
