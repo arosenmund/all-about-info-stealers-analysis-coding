@@ -36,7 +36,7 @@ cd 06-ai-enhanced-infostealer\classifier-cli-scanner-poc-001-windows-x86_64
 
 7s. Now, run the rust based classifier!!!
 ```
-.\classifier-cli.exe scan --root 'C:\Users\' --model '.\artifacts\cnn\cnn-fp32-033.onnx' --manifest '.\artifacts\cnn\cnn-fp32-003.manifest.json' --show-paths'
+.\classifier-cli.exe scan --root 'C:\Users\' --model '.\artifacts\cnn\cnn-fp32-033.onnx' --manifest '.\artifacts\cnn\cnn-fp32-003.manifest.json' --show-paths
 
 ```
 
